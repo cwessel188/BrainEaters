@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
+using System.Diagnostics;
 
 namespace BrainEaters.Hubs
 {
@@ -11,6 +12,11 @@ namespace BrainEaters.Hubs
         public void SendMessage(string message) // server message
         {
             Clients.All.SendMessage(message); // client message
+        }
+
+        public void KeyPressed(int keyCode) // server message
+        {
+            Clients.All.KeyPressed(keyCode); // client message
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿<!-- replaced by BrainEaters/index-->
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
 
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Brain Eaters!</title>
@@ -10,19 +12,20 @@
 
 
     <canvas id="gameCanvas" width="800" height="800" style="border-style: solid"></canvas>
-    <div style ="border-style: solid">
+    <div style="border-style: solid">
         <p id="score"></p>
         <p id="status"></p>
     </div>
-    
+
     <!-- get JQuery from CDN for ease of client side loading -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
 
     <!--  this does not exist. it's dynamically generated in memory and becomes a proxy for talking to signal-->
     <script src="~/signalR/hubs"></script>
 
-    <script src="Scripts/braineaters/braineaters.js"></script>
+    <script src="~/Scripts/braineaters/braineaters.js"></script>
+
 
 </body>
 </html>

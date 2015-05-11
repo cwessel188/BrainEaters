@@ -6,10 +6,15 @@ using System.Web.Mvc;
 
 namespace BrainEaters.Controllers
 {
-    public class DemoController : Controller
+    public class BrainEatersController : Controller
     {
-        // GET: Demo
+        // GET: BrainEaters
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Chat()
         {
             return View();
         }

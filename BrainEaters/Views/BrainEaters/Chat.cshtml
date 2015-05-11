@@ -1,9 +1,4 @@
 ﻿@{
-    ViewBag.Title = "Index";
-    Layout = null;
-}
-
-@{
     ViewBag.Title = "Home Page";
     Layout = null;
 }
@@ -16,9 +11,9 @@
 
 <ul id="messageList"></ul>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="~/Scripts/jquery.signalR-2.1.2.min.js"></script>
-<!--  this does not exist. it's dynamically generated in memory and becomes a proxy for talking to signalR -->
+<!--  this does not exist. it's dynamically generated in memory and becomes a proxy for talking to signal-->
 <script src="~/signalR/hubs"></script>
 
 <script>
@@ -28,7 +23,7 @@
     var messageList = document.getElementById('messageList');
 
     // reference hub
-    var chat = $.connection.BrainEatersHub;
+    var chat = $.connection.brainEatersHub;
 
     // start the WebSocket connection
     $.connection.hub.start().done(function () {

@@ -18,5 +18,10 @@ namespace BrainEaters.Hubs
         {
             Clients.All.KeyPressed(keyCode); // client message
         }
+
+        public void SignalRUpdateGame(Object[] entities)
+        {
+            Clients.All.SignalRUpdateGame(entities); // client message
+        }
     }
 }

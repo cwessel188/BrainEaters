@@ -1,4 +1,4 @@
-/// <reference path="../jquery-1.10.2.min.js" />
+﻿/// <reference path="../jquery-1.10.2.min.js" />
 /// <reference path="../jquery.signalR-2.1.2.min.js" />
 
 
@@ -114,10 +114,10 @@ for (var i = 0; i < NUM_FOOD; i++) {
 
 // make a unifying array for all the entities
 var entities = [];
-food.forEach( function (i) {
+food.forEach(function (i) {
     entities.push(i);
 });
-zombies.forEach( function (i) {
+zombies.forEach(function (i) {
     entities.push(i);
 });
 entities.push(steve);
@@ -130,11 +130,11 @@ entities.push(steve);
 var BEhub = $.connection.brainEatersHub;
 
 // start the connection
-$.connection.hub.start().done( function () {
+$.connection.hub.start().done(function () {
     $(window).keydown(function (e) { // on keydown
         BEhub.server.keyPressed(event.keyCode);
     });
-    $(window).requestAnimationFrame( BEhub.server.signalRUpdateGame(entities))
+    $(window).requestAnimationFrame(BEhub.server.signalRUpdateGame(entities))
 });
 
 
@@ -168,12 +168,12 @@ BEhub.client.keyPressed = function (keyCode) {
 var foodCount = NUM_FOOD;
 var mainloop = function () {
     drawGame();
- //   updateGame(entities)
+    //   updateGame(entities)
 
-   
+
     if (!foodCount) {
         scoretextarea.innerHTML = "You've won!";
-    } 
+    }
     else {
         window.requestAnimationFrame(mainloop);
     }
@@ -192,7 +192,7 @@ var updateGame = function (sprites) {
                 steve.deaths++;
             }
         }
-        else if (i instanceof steak) { 
+        else if (i instanceof steak) {
             if ((steve.img.style.x == i.img.style.x) && (steve.img.style.y == i.img.style.y)) {
                 var index = sprites.indexOf(i);
                 sprites.splice(index, 1);
@@ -223,11 +223,11 @@ var updateGame = function (sprites) {
                 }
             }
         }
-   
+
     });
-        // update text areas
-        scoretextarea.innerHTML =  `Steve's Score: ${steve.score}</br>`;
-        
+    // update text areas
+    scoretextarea.innerHTML =  `Steve's Score: ${steve.score}</br>`;
+
         // TODO is there a way to change innerHTML without overwriting it?
         statustextarea.innerHTML = `Steve's Deaths: ${steve.deaths}`;
 
@@ -239,7 +239,7 @@ var drawGame = function () {
     entities.forEach(function (f) {
         context.drawImage(f.img, parseInt(f.img.style.x), parseInt(f.img.style.y), f.width, f.height);
     });
-   
+
 };
 
 

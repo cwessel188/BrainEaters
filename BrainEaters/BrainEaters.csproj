@@ -222,9 +222,12 @@
     </Compile>
     <Compile Include="Hubs\BrainEatersHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BrainEaters\BrainEatersGame.cs" />
+    <Compile Include="Models\BrainEaters\GameEngine.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
+    <Compile Include="Models\BrainEaters\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -269,6 +272,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\braineaters\braineaters.js" />
+    <Content Include="Scripts\braineaters\braineatersclient.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.signalR-2.1.2.js" />
@@ -327,6 +331,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\BrainEaters\Index.cshtml" />
     <Content Include="Views\BrainEaters\Chat.cshtml" />
+    <Content Include="Views\BrainEaters\Game.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

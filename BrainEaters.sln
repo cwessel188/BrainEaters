@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainEaters", "BrainEaters\BrainEaters.csproj", "{7C6AEDDD-1195-4330-A5B9-5112F6D5BE18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientsideBrainEaters", "ClientsideBrainEaters\ClientsideBrainEaters.csproj", "{57C56FE3-E17A-4F38-ABF1-C7B0FA945A9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7C6AEDDD-1195-4330-A5B9-5112F6D5BE18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C6AEDDD-1195-4330-A5B9-5112F6D5BE18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C6AEDDD-1195-4330-A5B9-5112F6D5BE18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57C56FE3-E17A-4F38-ABF1-C7B0FA945A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C56FE3-E17A-4F38-ABF1-C7B0FA945A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C56FE3-E17A-4F38-ABF1-C7B0FA945A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C56FE3-E17A-4F38-ABF1-C7B0FA945A9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

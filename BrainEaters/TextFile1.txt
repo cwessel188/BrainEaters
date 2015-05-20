@@ -1,0 +1,24 @@
+﻿
+
+two implementations: 
+
+javascript, all front end ajax
+c# serverside, clients connect through signalR
+
+*******  TODO Split into two projects
+
+
+TODO create single instance of game. 
+	singleton pattern
+	thread safe constructor
+
+brainEatersGame is a threadsafe singleton, with a lock to prevent multiple instances being created.
+
+TODO singleton
+ game is still creating multiple version fo the board
+ handle singleton login in hub?
+ controller? client?
+ what all accesses the game? should i be passing the singltton into methods?
+ ami passing singletons intor methods?
+
+

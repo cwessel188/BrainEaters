@@ -226,10 +226,10 @@ var updateGame = function (sprites) {
    
     });
         // update text areas
-        scoretextarea.innerHTML =  `Steve's Score: ${steve.score}</br>`;
+        //scoretextarea.innerHTML =  "Steve's Score: ${steve.score}</br>";
         
-        // TODO is there a way to change innerHTML without overwriting it?
-        statustextarea.innerHTML = `Steve's Deaths: ${steve.deaths}`;
+        //// TODO is there a way to change innerHTML without overwriting it?
+        //statustextarea.innerHTML = "Steve's Deaths: ${steve.deaths}";
 
 };
 

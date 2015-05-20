@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -10,20 +9,21 @@
     <title>Brain Eaters!</title>
 </head>
 <body>
-    <canvas id="gameCanvas" width="600" height="600" style="border-style: solid"></canvas>
-<div style="border-style: solid; width:600px">
-    <p id="score"></p>
-    <p id="status"></p>
-</div>
 
-<!-- get JQuery from CDN for ease of client side loading -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
+    <canvas id="gameCanvas" width="500" height="500" style="border-style: solid"></canvas>
 
-<!-- this does not exist. it's dynamically generated in memory and becomes a proxy for talking to signalR -->
-<script src="~/signalR/hubs"></script>
+    <div style="border-style: solid; width:600px">
+        <p id="score"></p>
+        <p id="status"></p>
+    </div>
 
-<script src="~/Scripts/braineaters/braineaters.js"></script>
+    <!-- get JQuery from CDN for ease of client side loading -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
 
+    <!-- this does not exist. it's dynamically generated in memory and becomes a proxy for talking to signalR -->
+    <script src="~/signalR/hubs"></script>
+
+    <script src="~/Scripts/braineaters/braineatersclient.js"></script>
 </body>
 </html>

@@ -10,11 +10,10 @@ namespace BrainEaters.Hubs
 {
     public class BrainEatersHub : Hub
     {
-        private BrainEatersGame game { get; set; }
+        private BrainEatersGame _game { get; set; }
         public BrainEatersHub()
         {
-            var engine = new GameEngine();
-            game = engine.LoadGame(500, 500, 50, 10, 10);
+            _game = BrainEatersGame.Instance;
         }
         public void SendMessage(string message) // server message
         {
@@ -24,13 +23,20 @@ namespace BrainEaters.Hubs
 
         public void KeyPressed(int keyCode) // server message
         {
-            Clients.All.KeyPressed(keyCode); // client message
+            GameEngine.MovePlayer(keyCode);
+            Clients.Caller.UpdateGame(_game);
         }
 
-        public void SignalRUpdateGame(Object[] entities) // JSON here 
+        public void RequestGameState()
         {
-            Trace.WriteLine("hit server");
-            Clients.All.SignalRUpdateGame(entities); // more JSON
+            Clients.Caller.UpdateGame(_game);
+        }
+
+        public void AddPlayer(string name)
+        {
+            GameEngine.AddPlayer(name);
+            // add player to upper left of game
+            Clients.Caller.UpdateGame(_game);
         }
     }
 }

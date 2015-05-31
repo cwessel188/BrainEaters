@@ -9,7 +9,7 @@ namespace BrainEaters.Controllers
     public class BrainEatersController : Controller
     {
         // GET: BrainEaters
-        public ActionResult Index()
+        public ActionResult ClientSideGame()
         {
             return View();
         }
@@ -22,5 +22,6 @@ namespace BrainEaters.Controllers
         {
             return View();
         }
+
     }
 }

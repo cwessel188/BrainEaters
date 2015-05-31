@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "CLIENT JS ONLY";
     Layout = null;
 }
 
@@ -19,13 +19,12 @@
 
     <!-- get JQuery from CDN for ease of client side loading -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.min.js"></script>
 
     <!-- this does not exist. it's dynamically generated in memory and becomes a proxy for talking to signalR -->
     <script src="~/signalR/hubs"></script>
 
-    <script src="~/Scripts/braineaters/braineaters.js"></script>
-
+    <script src="~/Scripts/braineaters/clientside-only.js"></script>
 
 </body>
 </html>

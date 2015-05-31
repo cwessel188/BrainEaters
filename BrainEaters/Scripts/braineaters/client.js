@@ -8,7 +8,7 @@ const ZOMBIE_IMG = "../Content/images/Passive_Zombie.png";
 const PLR_IMG = "../Content/images/pacman.png";
 const FOOD_IMG = "../Content/images/mushroom.png";
 
-function entity(imgSrc) { // copied from zombie
+function entity(imgSrc) {
     this.img = document.createElement('img');
     this.img.src = imgSrc;
     this.width = 40;

@@ -12,6 +12,7 @@ namespace BrainEaters.Models
     {
         // a single instance of the class
         private static volatile BrainEatersGame _instance = null;
+
         // object to prevent multiple threads from creating new instances
         // prevents deadlocking
         private static object syncRoot = new object();

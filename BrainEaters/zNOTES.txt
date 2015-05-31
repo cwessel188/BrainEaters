@@ -8,17 +8,21 @@ c# serverside, clients connect through signalR
 *******  TODO Split into two projects
 
 
-TODO create single instance of game. 
+DONE create single instance of game. 
 	singleton pattern
 	thread safe constructor
 
 brainEatersGame is a threadsafe singleton, with a lock to prevent multiple instances being created.
 
-TODO singleton
+DONE singleton
  game is still creating multiple version fo the board
  handle singleton login in hub?
  controller? client?
- what all accesses the game? should i be passing the singltton into methods?
- ami passing singletons intor methods?
+ what all accesses the game? should i be passing the singleton into methods?
+ am i passing singletons into methods?
+
+ NEXT (as of 5.30):
+	implement player creation
+	addPlayer method is written but never called
 
 

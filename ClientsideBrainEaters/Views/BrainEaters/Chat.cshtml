@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
+
+
+<form id="frm">
+    <input id="messageInput" autocomplete="off" />
+    <input type="submit" value="Add" />
+</form>
+
+<ul id="messageList"></ul>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.min.js"></script>
+<!--  this does not exist. it's dynamically generated in memory and becomes a proxy for talking to signal-->
+<script src="~/signalR/hubs"></script>
+
+<script>
+    // reference DOM elements
+    var frm = document.getElementById('frm');
+    var messageInput = document.getElementById('messageInput');
+    var messageList = document.getElementById('messageList');
+
+    // reference hub
+    var chat = $.connection.brainEatersHub;
+
+    // start the WebSocket connection
+    $.connection.hub.start().done(function () {
+        // add listener for message form submit
+        frm.addEventListener('submit', function (e) {
+            e.preventDefault(); // prevent form from submitting
+            chat.server.sendMessage(messageInput.value); // send message to server
+            messageInput.value = ""; // clear input
+        });
+    });
+
+    // when server calls us, show messages from other users
+    chat.client.sendMessage = function (message) {
+        messageList.innerHTML = messageList.innerHTML + '<li>' + message + '</li>';
+    };
+
+</script>

@@ -1,6 +1,6 @@
 /// <reference path="../jquery-1.10.2.min.js" />
 /// <reference path="../jquery.signalR-2.1.2.min.js" />
-
+'use strict';
 
 var canvas = document.getElementById('gameCanvas');
 var context = canvas.getContext("2d");
@@ -127,25 +127,33 @@ entities.push(steve);
 // *************************************** MULTIPLAYER **************************************
 
 // the signalR hub
-//var BEhub = $.connection.brainEatersHub;
+var BEhub = $.connection.brainEatersHub;
 
-//// start the connection
-//$.connection.hub.start().done( function () {
-//    $(window).keydown(function (e) { // on keydown
-//        BEhub.server.keyPressed(event.keyCode);
-//    });
-//    // $(window).requestAnimationFrame( BEhub.server.signalRUpdateGame(entities))
-//});
-
-
-$(window).keydown(function (e) { // on keydown
-    keyPressed(event.keyCode);
+BEhub.client.keyPressed = keyPressed;
+// start the connection
+$.connection.hub.start().done( function () {
+    $(window).keydown(function (e) { // on keydown
+        console.log(`${event.keyCode} pressed, called hub`);
+        BEhub.server.keyPressed(event.keyCode);
+    });
 });
 
 
-// when server sends back keydown
-keyPressed = function (keyCode) {
 
+//$(window).keydown(function (e) {  // on keydown
+//    keyPressed(event.keyCode);
+//    console.log(event.keyCode + ' pressed, called from client');
+//});
+
+
+
+
+
+// *******************************************GAME FUNCTIONS**********************************************
+
+// when server sends back keydown
+function keyPressed (keyCode) {
+    console.log(`keyPressed reached with code ${keyCode}`);
     switch (keyCode) {
         // short circuiting prevents using (65 || 37)
         case 65: // A or left
@@ -167,8 +175,6 @@ keyPressed = function (keyCode) {
     }
 }
 
-
-// *******************************************GAME FUNCTIONS**********************************************
 
 var foodCount = NUM_FOOD;
 var mainloop = function () {

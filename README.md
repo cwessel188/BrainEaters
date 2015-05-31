@@ -1,16 +1,34 @@
 
-<h2>Single Player</h2>
+This project started out as a weekend assignment, which resulted in the single player version of the game. I had the idea to include multiplayer support, and the project grew from there.
+
+<h2>Brain Eaters: Multiplayer</h2>
+To start with, I had a JavaScript only single player version of the game. My first priority was to move all the game logic into a serverside Game Engine and Game object. The Game contains the board, a list of the current players. The Game Engine controls things like adding players and how the players and zombies move on the board.
+
+The Game itself is a thread safe singleton, which means there will only ever be exactly 1 instance created.
+
+The game board is stored as a 2D array with characters representing each location and the entity present. 
+
+I'm using a SignalR Hub to allow the Game Engine to manipulate the array, and also allow each client to draw the game in real time. 
+
+Each client can access the game object, and locally draws the game board, which allows the use of different sprites on each client. Each client also has control over only it's player.
+
+
+Currently working on:
+ - rewriting the MovePlayer method to work with any number of players
+ - improving the user interface to allow for selection of sprites and inputting of names
+ - tying each Player to a client ID from signalR, rather than assigning IDs sequentially
+
+What's Next:
+ - adding a chat feature
+ - improving the visuals
+ - making the game mechanics more complex (adding walls, more sophisticated zombie movement)
+
+<h2>The Single Player Game</h2>
+[Link to single player version is on the bottom of the page]
+
 The original version uses only JavaScript to create and manipulate game objects, with JQuery to handle key presses. All the entities are created at the beginning of the game, and there is a loop to continually draw the game, as well as a listener that triggers on key presses and updates the game accordingly.
 
-This rudimentary version was created in a few hours, but an idea struck me: this is a simple enough concept, why can't it support more than one player?
-
-<h2>Multiplayer</h2>
-
-My first challenge was to make sure any number of clients were manipulating the same version of the game. I solved this by use the singleton design pattern in ```BrainEatersGame.cs```, which not only makes sure there's only one instance of the game, but also locks the thread while the game is being created.
-
-From there, I use JSON to pass the game object into the client, where there's an animation loop, and logic to update the game instance. 
-
-My next challenge is to put all this in the context of a Player controlling the Pac-man, and eventually to add multiple players, each with his or her own client.
+This rudimentary version was created in a few hours, and I kept it as a reference for how I wanted the end product to behave.
 
 <h2>Flavor</h2>
 

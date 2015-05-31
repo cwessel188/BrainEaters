@@ -15,27 +15,45 @@ namespace BrainEaters.Hubs
         {
             _game = BrainEatersGame.Instance;
         }
+
+        /// <summary>
+        /// Calls the send message function in each [chat] client
+        /// </summary>
+        /// <param name="message">The message to be sent</param>
         public void SendMessage(string message) // server message
         {
-            //SignalRUpdateGame.DoSomething()//C# methods from C# class
+            //SignalRUpdateGame.DoSomething() //C# methods from C# class
             Clients.All.SendMessage(message); // client message
         }
 
-        public void KeyPressed(int keyCode) // server message
+        /// <summary>
+        /// Moves the player and calls each client to update it's game
+        /// </summary>
+        /// <param name="KyyCode"></param>
+        public void KeyPressed(int KeyCode) 
         {
-            GameEngine.MovePlayer(keyCode);
-            Clients.Caller.UpdateGame(_game);
+            GameEngine.MovePlayer(KeyCode);
+            Clients.All.UpdateGame(_game);
         }
 
+        /// <summary>
+        /// Tells the client to update it's game. Not sure if needed.
+        /// </summary>
         public void RequestGameState()
         {
-            Clients.Caller.UpdateGame(_game);
+            Clients.All.UpdateGame(_game);
         }
 
-        public void AddPlayer(string name)
+        /// <summary>
+        /// Adds a player to the game
+        /// Should be called once by each client
+        /// </summary>
+        /// <param name="name">The name provided by the client</param>
+        public void AddPlayer(string Name)
         {
-            GameEngine.AddPlayer(name);
-            // add player to upper left of game
+
+            var NewPlayerId = _game.Players.Count + 1;
+            GameEngine.AddPlayer(NewPlayerId, Name);
             Clients.Caller.UpdateGame(_game);
         }
     }

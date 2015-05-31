@@ -16,7 +16,7 @@ namespace BrainEaters.Models
         // object to prevent multiple threads from creating new instances
         // prevents deadlocking
         private static object syncRoot = new object();
-
+        
         // private constructor
         private BrainEatersGame() {
             // TODO pass dimensions to constructor
@@ -36,6 +36,15 @@ namespace BrainEaters.Models
             // make the array
             GameArray = new char[numCellColumns, numCellRows];
 
+            // fill array with empty spaces (empty array?)
+            for (int i = 0; i < numCellColumns; i++)
+            {
+                for (int j = 0; j < numCellRows; j++)
+                {
+                    GameArray[i, j] = '-';
+                }
+            }
+
             // add the zombies
             for (int i = 0; i < numZombies; i++)
             {
@@ -49,7 +58,8 @@ namespace BrainEaters.Models
             }
 
             // 4 player maximum
-            Players = new Player[4];
+            Players = new List<Player>();
+
 
         }
 
@@ -72,7 +82,7 @@ namespace BrainEaters.Models
         }
 
         public char[,] GameArray { get; set; }
-        public Player[] Players { get; set; }
+        public List<Player> Players { get; set; }
         public int CellWidth { get; set; }
     }
 }

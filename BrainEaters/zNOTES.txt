@@ -5,10 +5,7 @@ two implementations:
 javascript, all front end ajax
 c# serverside, clients connect through signalR
 
-*******  TODO Split into two projects
-
-
-DONE create single instance of game. 
+create single instance of game. DONE 
 	singleton pattern
 	thread safe constructor
 
@@ -23,16 +20,13 @@ DONE singleton
 
  NEXT (as of 5.30):
 	implement player creation
-	DONE addPlayer method is written but never called
-
-
-
+	FIXED addPlayer method is written but never called
 
 	5.30
 	added primitive player support
 	adds a player with ID based on the length of the player array
 	game persists across multiple clients
-TODO implement client IDs
+TODO implement client IDs DONE 5.31
 	
 TODO create and enum with all the characters
  z f - 0 1
@@ -40,7 +34,18 @@ TODO create and enum with all the characters
  CURRENTLY:
 	the clients add thier own player to the game object
 	id is numplayers++
-	need to update teh move player method so that it accepts a player
-	-> move player breaks because its looking for '0' and can't find it.
+	need to update teh move player method so that it accepts a player FIXED 5.31 
+	-> move player breaks because its looking for '0' and can't find it. FIXED 5.31 
 
-BUG: chrome calls the add player method when the address is pasted into the omnibar
+FIXED 5.31 BUG: chrome calls the add player method when the address is pasted into the omnibar
+
+
+NEXT 5.31:
+prompt users for their name
+handle collision between the players and other objects 
+	^ this is a pretty big thing
+
+create a method to move any object
+	the player and zomies will both call this
+
+handle zombie movement

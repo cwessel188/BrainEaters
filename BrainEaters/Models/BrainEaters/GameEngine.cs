@@ -12,28 +12,29 @@ namespace BrainEaters.Models
         /// Adds a player, represented by a char, to the upper left of the GameArray
         /// </summary>
         /// <param name="playerName">the name of the player</param>
-        public static void AddPlayer(int id, string playerName)
+        public static void AddPlayer(string Id, string playerName)
         {
             // TODO add player names
 
             var Plr = new Player();
             Plr.Name = playerName;
-            Plr.Id = (char) (id + 47);
+            Plr.PlrChar = (char) (BrainEatersGame.Instance.Players.Count + 48);
+            Plr.Id = Id;
 
             BrainEatersGame.Instance.Players.Add(Plr);
 
             // add player to upper left of game
-            BrainEatersGame.Instance.GameArray[0, 0] = Plr.Id;
+            BrainEatersGame.Instance.GameArray[0, 0] = Plr.PlrChar;
         }
 
         /// <summary>
         /// Moves the player inside the GameArray according to arrow keys or WSAD
         /// </summary>
         /// <param name="keyCode">the key pressed</param>
-        public static void MovePlayer(int keyCode)
+        public static void MovePlayer(string PlayerId, int keyCode)
         {
-            var plr = BrainEatersGame.Instance.Players[0]; // TODO player id
-            var plrChar = plr.Id;
+            var plr = BrainEatersGame.Instance.Players.Find(p => p.Id == PlayerId); // TODO player id
+            var plrChar = plr.PlrChar;
             var x = -1;
             var y = -1;
             char chr;
@@ -64,7 +65,7 @@ namespace BrainEaters.Models
                     {
                         BrainEatersGame.Instance.GameArray[x, y] = '-';
                         x--;
-                        BrainEatersGame.Instance.GameArray[x, y] = '0';
+                        BrainEatersGame.Instance.GameArray[x, y] = plrChar;
                     }
                     break;
                 case 68: // D or right
@@ -73,7 +74,7 @@ namespace BrainEaters.Models
                     {
                         BrainEatersGame.Instance.GameArray[x, y] = '-';
                         x++;
-                        BrainEatersGame.Instance.GameArray[x, y] = '0';
+                        BrainEatersGame.Instance.GameArray[x, y] = plrChar;
                     }
                     break;
                 case 87: // W or up
@@ -82,7 +83,7 @@ namespace BrainEaters.Models
                     {
                         BrainEatersGame.Instance.GameArray[x, y] = '-';
                         y--;
-                        BrainEatersGame.Instance.GameArray[x, y] = '0';
+                        BrainEatersGame.Instance.GameArray[x, y] = plrChar;
                     }
                     break;
                 case 83: // S or down
@@ -91,7 +92,7 @@ namespace BrainEaters.Models
                     {
                         BrainEatersGame.Instance.GameArray[x, y] = '-';
                         y++;
-                        BrainEatersGame.Instance.GameArray[x, y] = '0';
+                        BrainEatersGame.Instance.GameArray[x, y] = plrChar;
                     }
                     break;
             }

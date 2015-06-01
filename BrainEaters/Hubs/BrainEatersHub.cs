@@ -32,7 +32,7 @@ namespace BrainEaters.Hubs
         /// <param name="KyyCode"></param>
         public void KeyPressed(int KeyCode) 
         {
-            GameEngine.MovePlayer(KeyCode);
+            GameEngine.MovePlayer(Context.ConnectionId, KeyCode);
             Clients.All.UpdateGame(_game);
         }
 
@@ -52,7 +52,7 @@ namespace BrainEaters.Hubs
         public void AddPlayer(string Name)
         {
 
-            var NewPlayerId = _game.Players.Count + 1;
+            var NewPlayerId = Context.ConnectionId;
             GameEngine.AddPlayer(NewPlayerId, Name);
             Clients.Caller.UpdateGame(_game);
         }

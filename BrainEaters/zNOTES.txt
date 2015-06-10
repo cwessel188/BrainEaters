@@ -37,7 +37,7 @@ TODO create and enum with all the characters
 	need to update teh move player method so that it accepts a player FIXED 5.31 
 	-> move player breaks because its looking for '0' and can't find it. FIXED 5.31 
 
-FIXED 5.31 BUG: chrome calls the add player method when the address is pasted into the omnibar
+FIXED 5.31 BUG: chrome calls the add player method an extra time when the address is pasted into the omnibar
 
 
 NEXT 5.31:
@@ -45,7 +45,19 @@ prompt users for their name
 handle collision between the players and other objects 
 	^ this is a pretty big thing
 
+6.10
+refactored player movement methods in preparation for other entities moving and handling collisions
+
 create a method to move any object
 	the player and zomies will both call this
 
 handle zombie movement
+
+Wish List:
+ - add names to players and display them on the side along with their sprites.
+ - remove players from the board when they disconnect.
+ - host on azure
+ - walls
+ - sprite animations
+ - unit testing
+ - test the singleton for threadsafety

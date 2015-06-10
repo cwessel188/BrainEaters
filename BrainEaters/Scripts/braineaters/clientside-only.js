@@ -176,7 +176,7 @@ switch (keyCode) {
         steve.moveDown();
         break;
 }
-}
+} // ignore syntax error here
 
 var foodCount = NUM_FOOD;
 var mainloop = function () {

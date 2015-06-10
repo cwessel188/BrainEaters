@@ -33,10 +33,50 @@ namespace BrainEaters.Models
         /// <param name="keyCode">the key pressed</param>
         public static void MovePlayer(string PlayerId, int keyCode)
         {
-            var plr = BrainEatersGame.Instance.Players.Find(p => p.Id == PlayerId); // TODO player id
+
+            var plr = BrainEatersGame.Instance.Players.Find(p => p.Id == PlayerId);
             var plrChar = plr.PlrChar;
-            var x = -1;
-            var y = -1;
+            int x;
+            int y;
+            FindEntity(plrChar, out x, out y);
+            
+
+            switch (keyCode)
+            {
+                // short circuiting stops me from using (65 || 37)
+                case 65: // A or left
+                case 37:
+                    MoveLeft(plrChar, x, y);
+                    break;
+                case 68: // D or right
+                case 39:
+                    MoveRight(plrChar, x, y);
+                    break;
+                case 87: // W or up
+                case 38:
+                    MoveNorth(plrChar, x, y);
+                    break;
+                case 83: // S or down
+                case 40:
+                    MoveSouth(plrChar, x, y);
+                    break;
+            }
+        }
+
+        
+         
+        /// <summary>
+        /// Finds a player in the array
+        /// </summary>
+        /// <param name="PlayerId"></param>
+        /// <param name="plrChar">the unique char representing the player in the GameArray</param>
+        /// <param name="x">the player's X coordinate, -1 if not found</param>
+        /// <param name="y">the player's Y coordinate, -1 if not found</param>
+        private static void FindEntity(char entityChar, out int x, out int y)
+        {
+           
+            x = -1;
+            y = -1;
             char chr;
             // find the plr
             for (int i = 0; i < 10; i++)
@@ -44,7 +84,7 @@ namespace BrainEaters.Models
                 for (int j = 0; j < 10; j++)
                 {
                     chr = BrainEatersGame.Instance.GameArray[i, j];
-                    if (chr == plrChar)
+                    if (chr == entityChar)
                     {
                         x = i;
                         y = j;
@@ -54,48 +94,76 @@ namespace BrainEaters.Models
                 }
                 if (x >= 0) { break; } // player found
             }
-            
+        }
 
-            switch (keyCode)
+        /// <summary>
+        /// moves an entity to the left one cell,
+        /// replaces the current location with an empty tile.
+        /// </summary>
+        /// <param name="entityChar">the character representation of the entity to be moved.</param>
+        /// <param name="x">current x-coor of the thing</param>
+        /// <param name="y">current y-coor of the thing</param>
+        private static void MoveLeft(char entityChar, int x, int y)
+        {
+            if (x > 0) // to prevent moving off the grid.
             {
-                // short circuiting prevents using (65 || 37)
-                case 65: // A or left
-                case 37:
-                    if (x > 0)
-                    {
-                        BrainEatersGame.Instance.GameArray[x, y] = '-';
-                        x--;
-                        BrainEatersGame.Instance.GameArray[x, y] = plrChar;
-                    }
-                    break;
-                case 68: // D or right
-                case 39:
-                    if (x < BrainEatersGame.Instance.GameArray.GetUpperBound(0))
-                    {
-                        BrainEatersGame.Instance.GameArray[x, y] = '-';
-                        x++;
-                        BrainEatersGame.Instance.GameArray[x, y] = plrChar;
-                    }
-                    break;
-                case 87: // W or up
-                case 38:
-                    if (y > 0)
-                    {
-                        BrainEatersGame.Instance.GameArray[x, y] = '-';
-                        y--;
-                        BrainEatersGame.Instance.GameArray[x, y] = plrChar;
-                    }
-                    break;
-                case 83: // S or down
-                case 40:
-                    if (y < BrainEatersGame.Instance.GameArray.GetUpperBound(1))
-                    {
-                        BrainEatersGame.Instance.GameArray[x, y] = '-';
-                        y++;
-                        BrainEatersGame.Instance.GameArray[x, y] = plrChar;
-                    }
-                    break;
+                BrainEatersGame.Instance.GameArray[x, y] = '-';
+                x--;
+                BrainEatersGame.Instance.GameArray[x, y] = entityChar;
             }
         }
+
+        /// <summary>
+        /// moves an entity to the right one cell,
+        /// replaces the current location with an empty tile.
+        /// </summary>
+        /// <param name="entityChar">the character representation of the entity to be moved.</param>
+        /// <param name="x">current x-coor of the thing</param>
+        /// <param name="y">current y-coor of the thing</param>
+        private static void MoveRight(char entityChar, int x, int y)
+        {
+            if (x < BrainEatersGame.Instance.GameArray.GetUpperBound(0))
+            {
+                BrainEatersGame.Instance.GameArray[x, y] = '-';
+                x++;
+                BrainEatersGame.Instance.GameArray[x, y] = entityChar;
+            }
+        }
+
+        /// <summary>
+        /// moves an entity north one cell,
+        /// replaces the current location with an empty tile.
+        /// </summary>
+        /// <param name="entityChar">the character representation of the entity to be moved.</param>
+        /// <param name="x">current x-coor of the thing</param>
+        /// <param name="y">current y-coor of the thing</param>
+        private static void MoveNorth(char entityChar, int x, int y)
+        {
+            if (y > 0)
+            {
+                BrainEatersGame.Instance.GameArray[x, y] = '-';
+                y--;
+                BrainEatersGame.Instance.GameArray[x, y] = entityChar;
+            }
+        }
+
+        /// <summary>
+        /// moves an entity down one cell,
+        /// replaces the current location with an empty tile.
+        /// </summary>
+        /// <param name="entityChar">the character representation of the entity to be moved.</param>
+        /// <param name="x">current x-coor of the thing</param>
+        /// <param name="y">current y-coor of the thing</param>
+        private static void MoveSouth(char entityChar, int x, int y)
+        {
+            if (y < BrainEatersGame.Instance.GameArray.GetUpperBound(1))
+            {
+                BrainEatersGame.Instance.GameArray[x, y] = '-';
+                y++;
+                BrainEatersGame.Instance.GameArray[x, y] = entityChar;
+            }
+        }
+
+
     }
 }

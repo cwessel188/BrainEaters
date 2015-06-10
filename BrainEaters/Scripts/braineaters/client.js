@@ -72,7 +72,7 @@ BEhub.client.updateGame = function (data) {
 // *************************** DRAW GAME *******************************
 
 var drawGame = function (data) {
-
+    // TODO uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugly
     for (var x in data.GameArray) {
         for (var y in data.GameArray[x]) {
             if (data.GameArray[x][y] == '-') {

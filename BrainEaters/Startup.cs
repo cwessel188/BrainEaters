@@ -12,9 +12,9 @@ namespace BrainEaters
     {
         public void Configuration(IAppBuilder app)
         {
+       //     ConfigureAuth(app);
             // add SignalR mapping
             app.MapSignalR();
-            ConfigureAuth(app);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace BrainEaters.Models
         /// Adds a player, represented by a char, to the upper left of the GameArray
         /// </summary>
         /// <param name="playerName">the name of the player</param>
-        public static void AddPlayer(string Id, string playerName)
+        internal static void AddPlayer(string Id, string playerName)
         {
             // TODO add player names
 
@@ -25,6 +25,24 @@ namespace BrainEaters.Models
 
             // add player to upper left of game
             BrainEatersGame.Instance.GameArray[0, 0] = Plr.PlrChar;
+        }
+
+
+        internal static void RemovePlayer(Player player)
+        {
+            bool isPresent = BrainEatersGame.Instance.Players.Contains(player);
+
+            if (isPresent)
+            {
+                BrainEatersGame.Instance.Players.Remove(player);
+                Trace.WriteLine("player {0} removed.", player.Id);
+            }
+            else
+            {
+                // TODO figure out a better way to handle this.
+                throw new KeyNotFoundException();
+            }
+
         }
 
         /// <summary>
@@ -163,7 +181,5 @@ namespace BrainEaters.Models
                 BrainEatersGame.Instance.GameArray[x, y] = entityChar;
             }
         }
-
-
     }
 }

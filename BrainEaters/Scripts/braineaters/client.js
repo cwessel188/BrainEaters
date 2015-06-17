@@ -78,23 +78,12 @@ var drawGame = function (data) {
             if (data.GameArray[x][y] == '-') {
                 context.fillRect(data.CellWidth * x, data.CellWidth * y, data.CellWidth, data.CellWidth);
             }
-            else if (data.GameArray[x][y] == 'z') {
-               // console.log(data);
-                context.drawImage(zombie.img,
-                    data.CellWidth * x, data.CellWidth * y, // coordinates
-                    zombie.width, zombie.height);
-            }
-            else if (data.GameArray[x][y] == 'f') {
-                context.drawImage(steak.img,
-                    data.CellWidth * x, data.CellWidth * y,
-                    steak.width, steak.height);
-            }
             else if (data.GameArray[x][y] == '0') {
                 context.drawImage(player0.img,
                     data.CellWidth * x, data.CellWidth * y,
                     player0.width, player0.height);
             }
-            // ugly as fuck but i'll refactor later.
+            // ugly but i'll refactor later
             else if (data.GameArray[x][y] == '1') {
                 context.drawImage(player1.img,
                     data.CellWidth * x, data.CellWidth * y,

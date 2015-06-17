@@ -256,6 +256,8 @@
     <Content Include="Content\images\steve.png" />
     <Content Include="Content\images\zombie.png" />
     <Content Include="Content\Site.css" />
+    <Content Include="Documents\Backlog.txt" />
+    <Content Include="Documents\JSBacklog.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -280,6 +282,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\braineaters.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\braineaters\client.js" />
     <Content Include="Scripts\braineaters\clientside-only.js" />
@@ -302,7 +305,7 @@
     <Content Include="Scripts\app\app.viewmodel.js" />
     <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\home.viewmodel.js" />
-    <Content Include="zNOTES.txt" />
+    <Content Include="Documents\zNOTES.txt" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />

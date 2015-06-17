@@ -178,6 +178,7 @@ switch (keyCode) {
 }
 } // ignore syntax error here
 
+// *******************************************DRAW and UPDATE**************************************************
 var foodCount = NUM_FOOD;
 var mainloop = function () {
     drawGame();

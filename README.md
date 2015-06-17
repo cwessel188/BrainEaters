@@ -13,7 +13,7 @@ I'm using a SignalR Hub to allow the Game Engine to manipulate the array, and al
 Each client can access the game object, and locally draws the game board, which allows the use of different sprites on each client. Each client also has control over only it's player.
 
 As of 5.31:
- - each client (open a new Chrom window) now has it's own sprite. 
+ - each client now has it's own sprite. 
  - the game can handle up to 10 unique clients
  - players are tied to the client ID, which means the same window can't create multiple players
 

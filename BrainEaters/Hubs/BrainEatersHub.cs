@@ -14,6 +14,7 @@ namespace BrainEaters.Hubs
         public BrainEatersHub()
         {
             _game = BrainEatersGame.Instance;
+            // can this be new BrainEatersGame();
         }
 
         /// <summary>
@@ -29,7 +30,7 @@ namespace BrainEaters.Hubs
         /// <summary>
         /// Moves the player and calls each client to update it's game
         /// </summary>
-        /// <param name="KyyCode"></param>
+        /// <param name="KeyCode"></param>
         public void KeyPressed(int KeyCode) 
         {
             GameEngine.MovePlayer(Context.ConnectionId, KeyCode);
@@ -51,10 +52,16 @@ namespace BrainEaters.Hubs
         /// <param name="name">The name provided by the client</param>
         public void AddPlayer(string Name)
         {
-
+            // TODO add a line to the chat when a player logs in or out. 
             var NewPlayerId = Context.ConnectionId;
             GameEngine.AddPlayer(NewPlayerId, Name);
             Clients.Caller.UpdateGame(_game);
         }
+
+        public void RemovePlayer(Player player)
+        {
+            GameEngine.RemovePlayer(player);
+        }
+
     }
 }

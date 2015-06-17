@@ -48,16 +48,10 @@ handle collision between the players and other objects
 6.10
 refactored player movement methods in preparation for other entities moving and handling collisions
 
-create a method to move any object
-	the player and zomies will both call this
+6.12
+removed food and zombies for demo, created a 'tag' game that crashes on collisions
+NEXT:
+	handle collisions
+	notify on death
+	handle player spawning if there is a player at 0,0
 
-handle zombie movement
-
-Wish List:
- - add names to players and display them on the side along with their sprites.
- - remove players from the board when they disconnect.
- - host on azure
- - walls
- - sprite animations
- - unit testing
- - test the singleton for threadsafety

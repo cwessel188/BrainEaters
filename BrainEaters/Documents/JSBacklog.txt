@@ -1,0 +1,11 @@
+﻿add walls
+	probably not randomly generated
+
+animate sprites!
+	will likely call for a new png set
+
+for the first 5 seconds zombies cannot be on start tile.
+
+create difficulty mode based on timer
+
+move to typescript

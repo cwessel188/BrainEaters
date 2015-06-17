@@ -24,8 +24,8 @@ namespace BrainEaters.Models
             int boardLength = 500;
             int boardWidth = 500;
             int cellWidth = 50;
-            int numZombies = 10;
-            int numFood = 10;
+            // int numZombies = 10;
+            // int numFood = 10;
 
             var rand = new Random();
             int numCellColumns = boardLength / cellWidth;
@@ -45,6 +45,9 @@ namespace BrainEaters.Models
                 }
             }
 
+            /*
+             * For now, I'm removing these entities and creating a more 'tag' based game.
+             * This code is here for when I want to add I back in.
             // add the zombies
             for (int i = 0; i < numZombies; i++)
             {
@@ -56,8 +59,9 @@ namespace BrainEaters.Models
             {
                 GameArray[rand.Next(numCellColumns), rand.Next(numCellRows)] = 'f';
             }
+            */
 
-            // 4 player maximum
+            // 10 player maximum
             Players = new List<Player>();
 
 

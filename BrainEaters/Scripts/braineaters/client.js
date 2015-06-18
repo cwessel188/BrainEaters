@@ -49,12 +49,12 @@ var player9 = new entity(PLR9_IMG);
 var BEhub = $.connection.brainEatersHub;
 
 
+
 // start the connection
 $.connection.hub.start().done(function () {
     BEhub.server.addPlayer('Steve');
     BEhub.server.requestGameState(); // probably not needed
 
- // on keydown
     $(window).keydown(function (e) {
         console.log(event.keyCode);
         BEhub.server.keyPressed(event.keyCode);
@@ -62,6 +62,15 @@ $.connection.hub.start().done(function () {
 
 });
 
+// called when the window closes
+$(window).unload(function () {
+    BEhub.server.testMethod();
+})
+
+$.connection.hub.disconnected(function () {
+    console.log("stop function called");
+    BEhub.server.testMethod();
+});
 // ************************* CLIENT PROPERTIES *****************************
 
 BEhub.client.updateGame = function (data) {

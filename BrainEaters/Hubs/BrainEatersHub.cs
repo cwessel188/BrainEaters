@@ -63,5 +63,10 @@ namespace BrainEaters.Hubs
             GameEngine.RemovePlayer(player);
         }
 
+        public int TestMethod()
+        {
+            return 0;
+        }
+
     }
 }

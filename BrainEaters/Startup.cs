@@ -12,7 +12,8 @@ namespace BrainEaters
     {
         public void Configuration(IAppBuilder app)
         {
-       //     ConfigureAuth(app);
+            // ConfigureAuth(app); because fuck Owin
+
             // add SignalR mapping
             app.MapSignalR();
         }

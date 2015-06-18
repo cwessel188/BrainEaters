@@ -48,12 +48,13 @@ namespace BrainEaters.Models
             /*
              * For now, I'm removing these entities and creating a more 'tag' based game.
              * This code is here for when I want to add I back in.
-            // add the zombies
-            for (int i = 0; i < numZombies; i++)
-            {
-                GameArray[rand.Next(numCellColumns), rand.Next(numCellRows)] = 'z';
-            }
+            // add the zombies */
+            //for (int i = 0; i < numZombies; i++)
+            //{
+            //    GameArray[rand.Next(numCellColumns), rand.Next(numCellRows)] = 'z';
+            //}
 
+            /*
             // add the food
             for (int i = 0; i < numFood; i++)
             {

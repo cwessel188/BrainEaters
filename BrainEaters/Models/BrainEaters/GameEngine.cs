@@ -15,7 +15,6 @@ namespace BrainEaters.Models
         internal static void AddPlayer(string CxnId, string playerName)
         {
             // TODO add player names
-
             var Plr = new Player();
             Plr.Name = playerName;
             Plr.PlrChar = (char) (BrainEatersGame.Instance.Players.Count + 48);

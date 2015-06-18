@@ -13,11 +13,12 @@ var scoretextarea = document.getElementById('score');
 var statustextarea = document.getElementById('status');
 
 
-var CELL_INTERVAL = 50; // width of the cells.
-var PICTURE_SIZE = 40;  // size (in px) of each square picture
-var OFFSET = 5;         // how far from the edge of the cells the picture should be.
-var NUM_ZOMBIES = 10;   // num zombies to start with
-var NUM_FOOD = 10;   // num zombies to start with
+const CELL_INTERVAL = 50; // width of the cells.
+const PICTURE_SIZE = 40;  // size (in px) of each square picture
+const OFFSET = 5;         // how far from the edge of the cells the picture should be.
+const NUM_ZOMBIES = 15;   // num zombies to start with
+const ZOMBIE_SPEED = .05 // moves per frame
+const NUM_FOOD = 10;   // num zombies to start with
 
 // *********************************** INITIALIZATIONS ************************************
 
@@ -181,8 +182,8 @@ switch (keyCode) {
 // *******************************************DRAW and UPDATE**************************************************
 var foodCount = NUM_FOOD;
 var mainloop = function () {
-    drawGame();
     updateGame(entities)
+    drawGame();
     if (!foodCount) {
         scoretextarea.innerHTML = "You've won!";
     } 
@@ -218,7 +219,7 @@ var updateGame = function (sprites) {
     // move zombies!
     sprites.forEach(function (z) {
         if (z instanceof zombie) {
-            if (Math.random() < .01) { // move approx 1 out of 100 frames
+            if (Math.random() < ZOMBIE_SPEED) { // move approx 1 out of 100 frames
                 switch (Math.floor(Math.random() * 4)) {
                     case 0:
                         z.moveLeft();

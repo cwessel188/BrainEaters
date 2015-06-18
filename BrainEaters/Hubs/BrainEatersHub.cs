@@ -33,8 +33,14 @@ namespace BrainEaters.Hubs
         /// <param name="KeyCode"></param>
         public void KeyPressed(int KeyCode) 
         {
-            GameEngine.MovePlayer(Context.ConnectionId, KeyCode);
-            Clients.All.UpdateGame(_game);
+            if (GameEngine.MovePlayer(Context.ConnectionId, KeyCode))
+            {
+                Clients.All.UpdateGame(_game);
+            }
+            else 
+            {
+                Clients.Caller.IsDead();
+            }
         }
 
         /// <summary>
@@ -58,12 +64,13 @@ namespace BrainEaters.Hubs
             Clients.Caller.UpdateGame(_game);
         }
 
-        public void RemovePlayer(Player player)
+        public void ClientDisconnected()
         {
-            GameEngine.RemovePlayer(player);
+
+            GameEngine.RemovePlayer(Context.ConnectionId);
         }
 
-        public int TestMethod()
+        public int TestMethod(string message)
         {
             return 0;
         }

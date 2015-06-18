@@ -64,7 +64,7 @@ $.connection.hub.start().done(function () {
 
 // called when the window closes
 $(window).unload(function () {
-    BEhub.server.testMethod();
+    BEhub.server.clientDisconnected();
 })
 
 $.connection.hub.disconnected(function () {
@@ -77,6 +77,10 @@ BEhub.client.updateGame = function (data) {
     console.log('Updating Game');
     drawGame(data);
 };
+
+BEhub.client.isDead = function () {
+    alert("You've been eaten!");
+}
 
 // *************************** DRAW GAME *******************************
 

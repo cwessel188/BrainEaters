@@ -12,14 +12,14 @@ namespace BrainEaters.Models
         /// Adds a player, represented by a char, to the upper left of the GameArray
         /// </summary>
         /// <param name="playerName">the name of the player</param>
-        internal static void AddPlayer(string Id, string playerName)
+        internal static void AddPlayer(string CxnId, string playerName)
         {
             // TODO add player names
 
             var Plr = new Player();
             Plr.Name = playerName;
             Plr.PlrChar = (char) (BrainEatersGame.Instance.Players.Count + 48);
-            Plr.Id = Id;
+            Plr.Id = CxnId;
 
             BrainEatersGame.Instance.Players.Add(Plr);
 
@@ -28,18 +28,25 @@ namespace BrainEaters.Models
         }
 
 
-        internal static void RemovePlayer(Player player)
+        internal static void RemovePlayer(string CxnId)
         {
-            bool isPresent = BrainEatersGame.Instance.Players.Contains(player);
+            var player = BrainEatersGame.Instance.Players.Find(p => p.Id == CxnId);
 
-            if (isPresent)
+            if (player != null)
             {
+                // remove player from playerlist
                 BrainEatersGame.Instance.Players.Remove(player);
-                Trace.WriteLine("player {0} removed.", player.Id);
+                // remove plrChar from board
+                int x, y = 0;
+                if (FindEntity(player.PlrChar, out x, out y))
+                {
+                    BrainEatersGame.Instance.GameArray[x, y] = '-';
+                }
+
             }
             else
             {
-                // TODO figure out a better way to handle this.
+                // TODO figure out a way to handle this.
                 throw new KeyNotFoundException();
             }
 
@@ -49,16 +56,18 @@ namespace BrainEaters.Models
         /// Moves the player inside the GameArray according to arrow keys or WSAD
         /// </summary>
         /// <param name="keyCode">the key pressed</param>
-        public static void MovePlayer(string PlayerId, int keyCode)
+        /// <returns>false if the player's char is not on the board.</returns>
+        public static bool MovePlayer(string PlayerId, int keyCode)
         {
 
             var plr = BrainEatersGame.Instance.Players.Find(p => p.Id == PlayerId);
             var plrChar = plr.PlrChar;
             int x;
             int y;
-            FindEntity(plrChar, out x, out y);
-            
-
+            if (!FindEntity(plrChar, out x, out y))
+            {
+                return false;
+            }
             switch (keyCode)
             {
                 // short circuiting stops me from using (65 || 37)
@@ -79,18 +88,18 @@ namespace BrainEaters.Models
                     MoveSouth(plrChar, x, y);
                     break;
             }
+            return true;
         }
-
         
          
         /// <summary>
-        /// Finds a player in the array
+        /// Finds the first instance of the char in the array
         /// </summary>
         /// <param name="PlayerId"></param>
         /// <param name="plrChar">the unique char representing the player in the GameArray</param>
         /// <param name="x">the player's X coordinate, -1 if not found</param>
         /// <param name="y">the player's Y coordinate, -1 if not found</param>
-        private static void FindEntity(char entityChar, out int x, out int y)
+        private static bool FindEntity(char entityChar, out int x, out int y)
         {
            
             x = -1;
@@ -106,12 +115,13 @@ namespace BrainEaters.Models
                     {
                         x = i;
                         y = j;
-                        // x and y are now the coordinates of the player
+                        // x and y are now the coordinates of the char
                         break;
                     }
                 }
-                if (x >= 0) { break; } // player found
+                if (x >= 0) { break; } // char found
             }
+            return (x != -1) ? true : false;
         }
 
         /// <summary>

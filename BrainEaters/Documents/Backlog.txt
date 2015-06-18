@@ -44,3 +44,9 @@ prompt player name, possibly color.
 	add bot features like !onlinenow !playerinfo
 
 DONE ======================================================================
+
+BUGS ======================================================================
+When two clients are opened at the same time, they control the same player.
+	this is caused by using client id as the player id
+
+assigning plrchar based on the length of the player array is a bad idea.

@@ -129,6 +129,11 @@ var drawGame = function (data) {
                     data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
                     player0.width, player0.height);
             }
+            else if (data.GameArray[x][y] == 'z') {
+                context.drawImage(ZOMBIE_IMG,
+                    data.CellWidth * x, data.CellWidth * y,
+                    zombie.width, zombie.height);
+            }
 
         }
     }

@@ -27,33 +27,33 @@ function hero() {
     this.img.src = "../Content/images/pacman.png";
     this.width = PICTURE_SIZE;
     this.height = PICTURE_SIZE;
-    this.img.style.x = OFFSET; // coordinates
-    this.img.style.y = OFFSET;
+    this.x = OFFSET; // coordinates
+    this.y = OFFSET;
     this.score = 0;
     this.deaths = 0;
     // TODO copied from zombie. feels wet. i want a class.
     this.moveLeft = function () {
-        var xpos = parseInt(this.img.style.x);
+        var xpos = parseInt(this.x);
         if (xpos > CELL_INTERVAL) {
-            this.img.style.x = xpos - CELL_INTERVAL + 'px';
+            this.x = xpos - CELL_INTERVAL;
         }
     }
     this.moveRight = function () {
-        var xpos = parseInt(this.img.style.x);
+        var xpos = parseInt(this.x);
         if (xpos < canvas.clientWidth - CELL_INTERVAL) {
-            this.img.style.x = xpos + CELL_INTERVAL + 'px';
+            this.x = xpos + CELL_INTERVAL;
         }
     }
     this.moveUp = function () {
-        var ypos = parseInt(this.img.style.y);
+        var ypos = parseInt(this.y);
         if (ypos > CELL_INTERVAL) {
-            this.img.style.y = ypos - CELL_INTERVAL + 'px';
+            this.y = ypos - CELL_INTERVAL;
         }
     }
     this.moveDown = function () {
-        var ypos = parseInt(this.img.style.y);
+        var ypos = parseInt(this.y);
         if (ypos < canvas.clientHeight - CELL_INTERVAL) {
-            this.img.style.y = ypos + CELL_INTERVAL + 'px';
+            this.y = ypos + CELL_INTERVAL;
         }
     }
 }
@@ -64,32 +64,32 @@ function zombie() {
     this.img.src = "../Content/images/Passive_Zombie.png";
     this.width = PICTURE_SIZE;
     this.height = PICTURE_SIZE;
-    // make coordinates random                  numCells
-    this.img.style.x = OFFSET + parseInt(Math.random() * (canvas.clientWidth / CELL_INTERVAL)) * 50;
-    this.img.style.y = OFFSET + parseInt(Math.random() * (canvas.clientHeight / CELL_INTERVAL)) * 50;
+    // make coordinates random                             numCells
+    this.x = OFFSET + parseInt(Math.random() * (canvas.clientWidth / CELL_INTERVAL)) * 50;
+    this.y = OFFSET + parseInt(Math.random() * (canvas.clientHeight / CELL_INTERVAL)) * 50;
     // moving functions
     this.moveLeft = function () {
-        var xpos = parseInt(this.img.style.x);
+        var xpos = parseInt(this.x);
         if (xpos > CELL_INTERVAL) {
-            this.img.style.x = xpos - CELL_INTERVAL + 'px';
+            this.x = xpos - CELL_INTERVAL;
         }
     }
     this.moveRight = function () {
-        var xpos = parseInt(this.img.style.x);
+        var xpos = parseInt(this.x);
         if (xpos < canvas.clientWidth - CELL_INTERVAL) {
-            this.img.style.x = xpos + CELL_INTERVAL + 'px';
+            this.x = xpos + CELL_INTERVAL;
         }
     }
     this.moveUp = function () {
-        var ypos = parseInt(this.img.style.y);
+        var ypos = parseInt(this.y);
         if (ypos > CELL_INTERVAL) {
-            this.img.style.y = ypos - CELL_INTERVAL + 'px';
+            this.y = ypos - CELL_INTERVAL;
         }
     }
     this.moveDown = function () {
-        var ypos = parseInt(this.img.style.y);
+        var ypos = parseInt(this.y);
         if (ypos < canvas.clientHeight - CELL_INTERVAL) {
-            this.img.style.y = ypos + CELL_INTERVAL + 'px';
+            this.y = ypos + CELL_INTERVAL;
         }
     }
 }
@@ -101,8 +101,8 @@ function steak() { // copied from zombie
     this.width = PICTURE_SIZE;
     this.height = PICTURE_SIZE;
     // make coordinates random                  numCells
-    this.img.style.x = OFFSET + parseInt(Math.random() * (canvas.clientWidth / CELL_INTERVAL)) * 50;
-    this.img.style.y = OFFSET + parseInt(Math.random() * (canvas.clientHeight / CELL_INTERVAL)) * 50;
+    this.x = OFFSET + parseInt(Math.random() * (canvas.clientWidth / CELL_INTERVAL)) * 50;
+    this.y = OFFSET + parseInt(Math.random() * (canvas.clientHeight / CELL_INTERVAL)) * 50;
 }
 
 var steve = new hero();
@@ -127,32 +127,11 @@ zombies.forEach( function (i) {
 });
 entities.push(steve);
 
-
-
-// *************************************** MULTIPLAYER **************************************
-
-/*
-// the signalR hub
-var BEhub = $.connection.brainEatersHub;
-
-BEhub.client.keyPressed = keyPressed;
-// start the connection
-$.connection.hub.start().done( function () {
-    $(window).keydown(function (e) { // on keydown
-        console.log(`${event.keyCode} pressed, called hub`);
-    BEhub.server.keyPressed(event.keyCode);
-});
-*/
-
-
-
 // *******************************************GAME FUNCTIONS**********************************************
 
 $(window).keydown(function (e) {  // on keydown
     keyPressed(event.keyCode);
-    console.log(event.keyCode + ' pressed, called from client');
 });
-
 
 
 function keyPressed (keyCode) {
@@ -185,6 +164,7 @@ var mainloop = function () {
     updateGame(entities)
     if (!foodCount) {
         scoretextarea.innerHTML = "You've won!";
+        alert("You Win!");
     } 
     else {
         window.requestAnimationFrame(mainloop);
@@ -197,15 +177,15 @@ var updateGame = function (sprites) {
 
     sprites.forEach(function (i) {
         if (i instanceof zombie) {
-            if ((steve.img.style.x == i.img.style.x) && (steve.img.style.y == i.img.style.y)) {
+            if ((steve.x == i.x) && (steve.y == i.y)) {
                 // reset steve
-                steve.img.style.x = OFFSET;
-                steve.img.style.y = OFFSET;
+                steve.x = OFFSET;
+                steve.y = OFFSET;
                 steve.deaths++;
             }
         }
         else if (i instanceof steak) { 
-            if ((steve.img.style.x == i.img.style.x) && (steve.img.style.y == i.img.style.y)) {
+            if ((steve.x == i.x) && (steve.y == i.y)) {
                 var index = sprites.indexOf(i);
                 sprites.splice(index, 1);
                 foodCount--;
@@ -249,7 +229,7 @@ var drawGame = function () {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     entities.forEach(function (f) {
-        context.drawImage(f.img, parseInt(f.img.style.x), parseInt(f.img.style.y), f.width, f.height);
+        context.drawImage(f.img, parseInt(f.x), parseInt(f.y), f.width, f.height);
     });
    
 };

@@ -1,22 +1,26 @@
 ﻿IN PROGRESS: ================================================================
- - remove players from the board when they disconnect.
-	remove all players if there are no clients
-		make a getNewInstance method that creates a new singleton
-	remove a player on disconnect
+
+	create link from single player to multiplayer
+
+ move to typescript
+
+prompt player name, possibly color.
 
 BACKLOG ======================================================================
-  collisions with other players
+
+
+collisions with other players
 	notify death in some way
 	handle player (re)spawning when there's a player on 0,0
 
-create a method to move any object
-	the player and zomies will both call this
 
 - create and enum with the entity character set.
 
  - made solid icons of a unique color (based on player id?)
 
-prompt player name, possibly color.
+	remove all players if there are no clients
+		make a getNewInstance method that creates a new singleton
+
 
  - add names to players and display them on the side along with their sprites.
  - remove players from the board when they disconnect.
@@ -35,18 +39,37 @@ prompt player name, possibly color.
  update console log statements.
 
  remove/shorten console log statements.
-
- move to typescript
+ 
+ handle respqwns
 
  ADD A CHAT!
 	display a chat message when a player logs in or out.
 	add dev options to chat with special commands  !
 	add bot features like !onlinenow !playerinfo
 
-DONE ======================================================================
+from emily:
+	- more maps
+	- make the player search for the last player remaining
+	- powerups
+		increase speed?
+		zoom out?
+	- more maps
+	- let the user chose their icon
+		upload?
+		also color?
+	- hazards
+		lazers
+		zombies
 
+DONE ======================================================================
+- remove players from the board when they disconnect.
+- remove a player on disconnect
+- create a method to move any object
+	the player and zomies will both call this
 BUGS ======================================================================
 When two clients are opened at the same time, they control the same player.
 	this is caused by using client id as the player id
 
 assigning plrchar based on the length of the player array is a bad idea.
+
+padding not equal from the sprites to the end of the map

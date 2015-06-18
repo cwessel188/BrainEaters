@@ -191,5 +191,13 @@ namespace BrainEaters.Models
                 BrainEatersGame.Instance.GameArray[x, y] = entityChar;
             }
         }
+
+        /// <summary>
+        /// VERY primitive reset function
+        /// </summary>
+        public static void ResetPlayers()
+        {
+            BrainEatersGame.Instance.Players = new List<Player>();
+        }
     }
 }

@@ -7,6 +7,9 @@ context.fillStyle = "#FFFFFF";
 var scoretextarea = document.getElementById('score');
 var statustextarea = document.getElementById('status');
 
+const IMG_SIZE = 40; // image height and width in pixels
+const IMG_PADDING = 5 // pixels
+
 const ZOMBIE_IMG = "../Content/images/Passive_Zombie.png";
 const FOOD_IMG = "../Content/images/mushroom.png";
 const PLR0_IMG = "../Content/images/pacman.png";
@@ -20,16 +23,15 @@ const PLR7_IMG = "../Content/images/7.png";
 const PLR8_IMG = "../Content/images/8.png";
 const PLR9_IMG = "../Content/images/9.png";
 
+
 function entity(imgSrc) {
     this.img = document.createElement('img');
     this.img.src = imgSrc;
-    this.width = 40;
-    this.height = 40;
+    this.width = IMG_SIZE;
+    this.height = IMG_SIZE;
 }
 
-var zombie = new entity(ZOMBIE_IMG);
-var steak = new entity(FOOD_IMG);
-// function facotry?
+// function factory?
 var player0 = new entity(PLR0_IMG);
 var player1 = new entity(PLR1_IMG);
 var player2 = new entity(PLR2_IMG);
@@ -93,38 +95,38 @@ var drawGame = function (data) {
             }
             else if (data.GameArray[x][y] == '0') {
                 context.drawImage(player0.img,
-                    data.CellWidth * x, data.CellWidth * y,
+                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
                     player0.width, player0.height);
             }
             // ugly but i'll refactor later
             else if (data.GameArray[x][y] == '1') {
                 context.drawImage(player1.img,
-                    data.CellWidth * x, data.CellWidth * y,
+                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
                     player0.width, player0.height);
             }
             else if (data.GameArray[x][y] == '2') {
                 context.drawImage(player2.img,
-                    data.CellWidth * x, data.CellWidth * y,
+                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
                     player0.width, player0.height);
             }
             else if (data.GameArray[x][y] == '3') {
                 context.drawImage(player3.img,
-                    data.CellWidth * x, data.CellWidth * y,
+                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
                     player0.width, player0.height);
             }
             else if (data.GameArray[x][y] == '4') {
                 context.drawImage(player4.img,
-                    data.CellWidth * x, data.CellWidth * y,
+                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
                     player0.width, player0.height);
             }
             else if (data.GameArray[x][y] == '5') {
                 context.drawImage(player5.img,
-                    data.CellWidth * x, data.CellWidth * y,
+                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
                     player0.width, player0.height);
             }
             else if (data.GameArray[x][y] == '6') {
                 context.drawImage(player6.img,
-                    data.CellWidth * x, data.CellWidth * y,
+                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
                     player0.width, player0.height);
             }
 

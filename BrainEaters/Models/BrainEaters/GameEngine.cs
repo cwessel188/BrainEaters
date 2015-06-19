@@ -9,7 +9,7 @@ namespace BrainEaters.Models
     public static class GameEngine
     {
         /// <summary>
-        /// Adds a player, represented by a char, to the upper left of the GameArray
+        /// Creates a player and adds his PlrChar to the board
         /// </summary>
         /// <param name="playerName">the name of the player</param>
         internal static void AddPlayer(string CxnId, string playerName)
@@ -26,7 +26,10 @@ namespace BrainEaters.Models
             BrainEatersGame.Instance.GameArray[0, 0] = Plr.PlrChar;
         }
 
-
+        /// <summary>
+        /// Removes the Player from the PlayerList, and the Plrchar from the board
+        /// </summary>
+        /// <param name="CxnId">the connection Id of the player's client</param>
         internal static void RemovePlayer(string CxnId)
         {
             var player = BrainEatersGame.Instance.Players.Find(p => p.Id == CxnId);
@@ -46,7 +49,7 @@ namespace BrainEaters.Models
             else
             {
                 // TODO figure out a way to handle this.
-                throw new KeyNotFoundException();
+                int i = 0; i++;
             }
 
         }

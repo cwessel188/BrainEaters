@@ -1,4 +1,6 @@
-﻿//'use strict';
+﻿/// <reference path="jquery.signalr-2.1.2.min.js" />
+'use strict';
+// ******************************** SET UP ********************************
 
 var canvas = document.getElementById('gameCanvas');
 var context = canvas.getContext("2d");
@@ -8,7 +10,7 @@ var scoretextarea = document.getElementById('score');
 var statustextarea = document.getElementById('status');
 
 const IMG_SIZE = 40; // image height and width in pixels
-const IMG_PADDING = 5 // pixels
+const IMG_PADDING = 5; // pixels
 
 const ZOMBIE_IMG = "../Content/images/Passive_Zombie.png";
 const FOOD_IMG = "../Content/images/mushroom.png";
@@ -24,38 +26,27 @@ const PLR8_IMG = "../Content/images/8.png";
 const PLR9_IMG = "../Content/images/9.png";
 
 
-function entity(imgSrc) {
+function entity(imgSrc) { // TODO Entity
     this.img = document.createElement('img');
     this.img.src = imgSrc;
-    this.width = IMG_SIZE;
-    this.height = IMG_SIZE;
 }
 
-// function factory?
-var player0 = new entity(PLR0_IMG);
-var player1 = new entity(PLR1_IMG);
-var player2 = new entity(PLR2_IMG);
-var player3 = new entity(PLR3_IMG);
-var player4 = new entity(PLR4_IMG);
-var player5 = new entity(PLR5_IMG);
-var player6 = new entity(PLR6_IMG);
-var player7 = new entity(PLR7_IMG);
-var player8 = new entity(PLR8_IMG);
-var player9 = new entity(PLR9_IMG);
+// create the players
+for (var i = 0; i < 10; i++) {
+    window["player" + i] = new entity("../Content/images/" + i + ".png");
+}
 
 
+// ******************************** SIGNALR HUB **********************************
 
-// **************************** SIGNALR HUB ******************************
+var playerName = prompt("Enter your name:", "Steve");
 
 // start hub
 var BEhub = $.connection.brainEatersHub;
 
-
-
 // start the connection
 $.connection.hub.start().done(function () {
-    BEhub.server.addPlayer('Steve');
-    BEhub.server.requestGameState(); // probably not needed
+    BEhub.server.addPlayer(playerName);
 
     $(window).keydown(function (e) {
         console.log(event.keyCode);
@@ -65,15 +56,12 @@ $.connection.hub.start().done(function () {
 });
 
 // called when the window closes
-$(window).unload(function () {
-    BEhub.server.clientDisconnected();
-})
+//$(window).unload(function () {
+//    BEhub.server.clientDisconnected();
+//})
 
-$.connection.hub.disconnected(function () {
-    console.log("stop function called");
-    BEhub.server.testMethod();
-});
-// ************************* CLIENT PROPERTIES *****************************
+
+// **************************** CLIENT PROPERTIES **********************************
 
 BEhub.client.updateGame = function (data) {
     console.log('Updating Game');
@@ -82,62 +70,37 @@ BEhub.client.updateGame = function (data) {
 
 BEhub.client.isDead = function () {
     alert("You've been eaten!");
-}
+};
 
-// *************************** DRAW GAME *******************************
+// ********************************* DRAW GAME **********************************
 
 var drawGame = function (data) {
-    // TODO uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugly
-    for (var x in data.GameArray) {
-        for (var y in data.GameArray[x]) {
-            if (data.GameArray[x][y] == '-') {
-                context.fillRect(data.CellWidth * x, data.CellWidth * y, data.CellWidth, data.CellWidth);
-            }
-            else if (data.GameArray[x][y] == '0') {
-                context.drawImage(player0.img,
-                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
-                    player0.width, player0.height);
-            }
-            // ugly but i'll refactor later
-            else if (data.GameArray[x][y] == '1') {
-                context.drawImage(player1.img,
-                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
-                    player0.width, player0.height);
-            }
-            else if (data.GameArray[x][y] == '2') {
-                context.drawImage(player2.img,
-                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
-                    player0.width, player0.height);
-            }
-            else if (data.GameArray[x][y] == '3') {
-                context.drawImage(player3.img,
-                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
-                    player0.width, player0.height);
-            }
-            else if (data.GameArray[x][y] == '4') {
-                context.drawImage(player4.img,
-                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
-                    player0.width, player0.height);
-            }
-            else if (data.GameArray[x][y] == '5') {
-                context.drawImage(player5.img,
-                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
-                    player0.width, player0.height);
-            }
-            else if (data.GameArray[x][y] == '6') {
-                context.drawImage(player6.img,
-                    data.CellWidth * x + IMG_PADDING, data.CellWidth * y + IMG_PADDING,
-                    player0.width, player0.height);
-            }
-            else if (data.GameArray[x][y] == 'z') {
-                context.drawImage(ZOMBIE_IMG,
-                    data.CellWidth * x, data.CellWidth * y,
-                    zombie.width, zombie.height);
+    for (let x in data.GameArray) {
+        for (let y in data.GameArray[x]) {
+            switch (data.GameArray[x][y]) {
+                case "-":
+                    context.fillRect(data.CellWidth * x, data.CellWidth * y, data.CellWidth, data.CellWidth);
+                    break;
+                case ("0"): // 0 is falsey and must be handled seperately
+                    drawPlayer(0, x, y, data.CellWidth);
+                    break;
+                default:
+                    if (parseInt(data.GameArray[x][y], 10)) { // it's a number
+                        drawPlayer(parseInt(data.GameArray[x][y], 10), x, y, data.CellWidth);
+                    }
+                    else {
+                        console.log("Error in drawPlayer: char not recognized" + data.GameArray[x][y]);
+                    }
+
             }
 
-        }
-    }
+        }  // for x
+    }      // for y
+};         // draw game
+
+var drawPlayer = function (plrNumber, x, y, cellWidth) {
+    context.drawImage(
+        window["player" + plrNumber].img,
+        cellWidth * x + IMG_PADDING, cellWidth * y + IMG_PADDING,
+        IMG_SIZE, IMG_SIZE);
 };
-// prompt user
-
-// add user

@@ -5,6 +5,7 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using System.Diagnostics;
 using BrainEaters.Models;
+using System.Threading.Tasks;
 
 namespace BrainEaters.Hubs
 {
@@ -64,15 +65,18 @@ namespace BrainEaters.Hubs
             Clients.Caller.UpdateGame(_game);
         }
 
-        public void ClientDisconnected()
-        {
-
-            GameEngine.RemovePlayer(Context.ConnectionId);
-        }
-
         public int TestMethod(string message)
         {
             return 0;
+        }
+
+        public override Task OnDisconnected(bool stopCalled)
+        {
+            // For example: in a chat application, mark the user as offline, 
+            // delete the association between the current connection id and user name.
+            GameEngine.RemovePlayer(Context.ConnectionId);
+
+            return base.OnDisconnected(stopCalled);
         }
 
     }

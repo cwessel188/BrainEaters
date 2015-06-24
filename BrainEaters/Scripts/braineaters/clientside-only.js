@@ -1,7 +1,7 @@
 ﻿/// <reference path="../jquery-1.10.2.min.js" />
 
 /*
-this version fo the game does NOT use signal r at all. 
+this version of the game does NOT use signal r at all. 
 it is contained within a single page and intended for use as a reference
 */
 
@@ -17,8 +17,8 @@ const CELL_INTERVAL = 50; // width of the cells.
 const PICTURE_SIZE = 40;  // size (in px) of each square picture
 const OFFSET = 5;         // how far from the edge of the cells the picture should be.
 const NUM_ZOMBIES = 15;   // num zombies to start with
-const ZOMBIE_SPEED = .05 // moves per frame
-const NUM_FOOD = 10;   // num zombies to start with
+const ZOMBIE_SPEED = .05; // moves per frame
+const NUM_FOOD = 10;      // num zombies to start with
 
 // *********************************** INITIALIZATIONS ************************************
 
@@ -70,25 +70,25 @@ function zombie() {
     this.y = OFFSET + parseInt(Math.random() * (canvas.clientHeight / CELL_INTERVAL)) * 50;
     // moving functions
     this.moveLeft = function () {
-        var xpos = parseInt(this.x);
-        if (xpos > CELL_INTERVAL) {
+        var xpos = this.x;
+        if (xpos > CELL_INTERVAL && !(this.x == CELL_INTERVAL + OFFSET && this.y == 0 + OFFSET) ) {
             this.x = xpos - CELL_INTERVAL;
         }
     }
     this.moveRight = function () {
-        var xpos = parseInt(this.x);
+        var xpos = this.x;
         if (xpos < canvas.clientWidth - CELL_INTERVAL) {
             this.x = xpos + CELL_INTERVAL;
         }
     }
     this.moveUp = function () {
-        var ypos = parseInt(this.y);
-        if (ypos > CELL_INTERVAL) {
+        var ypos = this.y;
+        if (ypos > CELL_INTERVAL && !(this.y == CELL_INTERVAL + OFFSET && this.x == 0 + OFFSET)) {
             this.y = ypos - CELL_INTERVAL;
         }
     }
     this.moveDown = function () {
-        var ypos = parseInt(this.y);
+        var ypos = this.y;
         if (ypos < canvas.clientHeight - CELL_INTERVAL) {
             this.y = ypos + CELL_INTERVAL;
         }
@@ -128,7 +128,7 @@ zombies.forEach( function (i) {
 });
 entities.push(steve);
 
-// *******************************************GAME FUNCTIONS**********************************************
+// *****************************************GAME FUNCTIONS**********************************************
 
 $(window).keydown(function (e) {  // on keydown
     keyPressed(event.keyCode);
@@ -136,7 +136,7 @@ $(window).keydown(function (e) {  // on keydown
 
 
 function keyPressed (keyCode) {
-    console.log(`keyPressed reached with code ${keyCode}`);
+    console.log(`keyPressed with code ${keyCode}`);
 switch (keyCode) {
     // short circuiting prevents using (65 || 37)
     case 65: // A or left
@@ -199,7 +199,7 @@ var updateGame = function (sprites) {
     // move zombies!
     sprites.forEach(function (z) {
         if (z instanceof zombie) {
-            if (Math.random() < ZOMBIE_SPEED) { // move approx 1 out of 100 frames
+            if (Math.random() < ZOMBIE_SPEED) { // move approx 5 out of 100 frames
                 switch (Math.floor(Math.random() * 4)) {
                     case 0:
                         z.moveLeft();

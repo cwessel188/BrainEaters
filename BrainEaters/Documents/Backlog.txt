@@ -1,18 +1,19 @@
 ﻿IN PROGRESS: ================================================================
-
-	create link from single player to multiplayer
-
- move to typescript
-
-prompt player name, possibly color.
-
+ - add a powerup to slow down the player for a specified amount of time.
+ 
+ remove/shorten console log statements.
 BACKLOG ======================================================================
 
+write a respawn function
+
+ move to typescript
 
 collisions with other players
 	notify death in some way
 	handle player (re)spawning when there's a player on 0,0
 
+
+prompt possibly color.
 
 - create and enum with the entity character set.
 
@@ -23,12 +24,10 @@ collisions with other players
 
 
  - add names to players and display them on the side along with their sprites.
- - remove players from the board when they disconnect.
- - host on azure
  - walls
  - sprite animations
  - unit testing
- - test the singleton for threadsafety
+	- test the singleton for threadsafety
 
  made solid icons of a unique color (based on player id?)
 
@@ -38,7 +37,6 @@ collisions with other players
 
  update console log statements.
 
- remove/shorten console log statements.
  
  handle respqwns
 
@@ -62,14 +60,25 @@ from emily:
 		zombies
 
 DONE ======================================================================
+
+- added Chat
+- create link from single player to multiplayer
+- prompt player name
 - remove players from the board when they disconnect.
 - remove a player on disconnect
+
+- host on azure
 - create a method to move any object
 	the player and zomies will both call this
 BUGS ======================================================================
-When two clients are opened at the same time, they control the same player.
-	this is caused by using client id as the player id
 
 assigning plrchar based on the length of the player array is a bad idea.
 
-padding not equal from the sprites to the end of the map
+FIXED =====================================================================
+- added 'tabindex="1"', which allow the canvas to be in focus and captures the listener
+	so that chat messages no longer mode the players
+
+- padding not equal from the sprites to the end of the map
+
+- When two clients are opened at the same time, they control the same player.
+	this is caused by using client id as the player id

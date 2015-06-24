@@ -284,6 +284,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Properties\PublishProfiles\braineaters %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\braineaters.pubxml" />
+    <Content Include="Scripts\braineaters\basic-chat.js" />
     <Content Include="Scripts\braineaters\clientside-only.min.js.map">
       <DependentUpon>clientside-only.min.js</DependentUpon>
     </Content>

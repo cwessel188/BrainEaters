@@ -19,6 +19,7 @@ namespace BrainEaters.Models
             Plr.Name = playerName;
             Plr.PlrChar = (char) (BrainEatersGame.Instance.Players.Count + 48);
             Plr.Id = CxnId;
+            Plr.ConnectionId = CxnId;
 
             BrainEatersGame.Instance.Players.Add(Plr);
 

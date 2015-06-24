@@ -15,7 +15,6 @@ namespace BrainEaters.Hubs
         public BrainEatersHub()
         {
             _game = BrainEatersGame.Instance;
-            // can this be new BrainEatersGame();
         }
 
         /// <summary>
@@ -24,8 +23,9 @@ namespace BrainEaters.Hubs
         /// <param name="message">The message to be sent</param>
         public void SendMessage(string message) // server message
         {
-            //SignalRUpdateGame.DoSomething() //C# methods from C# class
-            Clients.All.SendMessage(message); // client message
+
+            var Plr = BrainEatersGame.Instance.Players.Find(p => p.ConnectionId == Context.ConnectionId);
+            Clients.All.SendMessage(Plr.Name, message); 
         }
 
         /// <summary>

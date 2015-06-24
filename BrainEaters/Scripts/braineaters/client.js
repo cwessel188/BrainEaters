@@ -48,18 +48,13 @@ var BEhub = $.connection.brainEatersHub;
 $.connection.hub.start().done(function () {
     BEhub.server.addPlayer(playerName);
 
-    $(window).keydown(function (e) {
+    // this syxtax works because I set tabindex="1" on the convas element
+    $(canvas).keydown(function (e) {
         console.log(event.keyCode);
         BEhub.server.keyPressed(event.keyCode);
     });
 
 });
-
-// called when the window closes
-//$(window).unload(function () {
-//    BEhub.server.clientDisconnected();
-//})
-
 
 // **************************** CLIENT PROPERTIES **********************************
 
@@ -91,9 +86,7 @@ var drawGame = function (data) {
                     else {
                         console.log("Error in drawPlayer: char not recognized" + data.GameArray[x][y]);
                     }
-
             }
-
         }  // for x
     }      // for y
 };         // draw game

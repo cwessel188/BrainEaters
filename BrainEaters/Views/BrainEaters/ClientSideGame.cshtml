@@ -6,19 +6,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Brain Eaters!</title>
+    @Styles.Render("~/Content/css")
 </head>
 <body>
 
 
 
-    <canvas id="gameCanvas" width="600" height="600" style="border-style: solid"></canvas>
-    <div style="border-style: solid; width:600px">
-        <p id="score"></p>
-        <p id="status"></p>
-    </div>
-    
-    <a href="~/BrainEaters/ClientSideGame">Multiplayer Game</a>
+    <div class="row">
+        <div class="col-lg-6">
+            <canvas id="gameCanvas" width="600" height="600" style="border-style: solid"></canvas>
+            <div style="border-style: solid; width:600px">
+                <p id="score"></p>
+                <p id="status"></p>
+            </div>
+            <a href="~/BrainEaters/Game">Multiplayer Game</a>
+        </div>
+        <div class="col-lg-6" id="description">
+            Brain Eaters is an immersive adventure in which YOU, the player, play the part of Pac-man, a cursed prince reduced disembodied mouth trying desperately to survive. You must dodge the minecraft zombies and collect the mushrooms. If you collect all ten, the malicious curse is broken and the game ends. But if you encounter a zombie, it eats your soul and you are sent through the aether back from whence you started. Also your death count increments. Use either the arrow keys or WSAD to control your character.
 
+            The Brain Eaters concept is accredited to Stephen Walther.
+        </div>
+
+
+    </div>
     <!-- get JQuery from CDN for ease of client side loading -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="~/Scripts/braineaters/clientside-only.js"></script>

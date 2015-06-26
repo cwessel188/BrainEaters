@@ -70,38 +70,19 @@ BEhub.client.isDead = function () {
 // ********************************* DRAW GAME ************************************
 
 var drawGame = function (data) {
-    for (let x in data.GameArray) {
-        for (let y in data.GameArray[x]) {
-            switch (data.GameArray[x][y]) {
-                case "-":
-                    context.fillStyle = "#FFFFFF";
-                    context.fillRect(data.CellWidth * x, data.CellWidth * y, data.CellWidth, data.CellWidth);
-                    break;
-                case ("0"): // 0 is falsey and must be handled seperately
-                    // drawPlayerImage(0, x, y, data.CellWidth);
-                    drawPlayerColor(data, 0, x, y, data.CellWidth)
-                    break;
-                default:
-                    if (parseInt(data.GameArray[x][y], 10)) { // it's a number
-                        // drawPlayerImage(parseInt(data.GameArray[x][y], 10), x, y, data.CellWidth);
-                        drawPlayerColor(data, parseInt(data.GameArray[x][y], 10), x, y, data.CellWidth);
-                    }
-                    else {
-                        console.log("Error in drawPlayer: char not recognized" + data.GameArray[x][y]);
-                    }
-            }
-        }  // for x
-    }      // for y
+    data.Players.foreach(
+            drawPlayerAsColor()
+        )
 };         // draw game
 
-var drawPlayerImage = function (plrNumber, x, y, cellWidth) {
+var drawPlayerAsImage = function (plrNumber, x, y, cellWidth) {
     context.drawImage(
         window["player" + plrNumber].img,
         cellWidth * x + IMG_PADDING, cellWidth * y + IMG_PADDING,
         IMG_SIZE, IMG_SIZE);
 };
 
-var drawPlayerColor = function (data, plrNumber, x, y, cellWidth) {
+var drawPlayerAsColor = function (data, plrNumber, x, y, cellWidth) {
     context.fillStyle = data.Players[plrNumber].Color;
     context.fillRect(cellWidth * x + IMG_PADDING, cellWidth * y + IMG_PADDING, // coors
         IMG_SIZE, IMG_SIZE); // size

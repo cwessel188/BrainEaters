@@ -45,6 +45,6 @@ textarea {
 /*TODO make this window scrollable*/
 #chat-window {
     list-style-type: none;
-
+    height: 80vh;
     overflow-y: scroll;
 }

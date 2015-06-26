@@ -34,3 +34,17 @@ textarea {
         padding: 10px 15px;
     }
 }
+
+/*================================ STYLES ==============================*/
+
+#chat-form {
+    position: fixed;
+    right: 50px;
+    bottom: 0;
+}
+/*TODO make this window scrollable*/
+#chat-window {
+    list-style-type: none;
+
+    overflow-y: scroll;
+}

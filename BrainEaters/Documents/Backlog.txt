@@ -1,7 +1,11 @@
 ﻿IN PROGRESS: ================================================================
  - add a powerup to slow down the player for a specified amount of time.
  
- remove/shorten console log statements.
+create a partial for player logins prompting name and color
+
+
+ create a scrolling chat div
+
 BACKLOG ======================================================================
 
 write a respawn function
@@ -61,6 +65,9 @@ from emily:
 
 DONE ======================================================================
 
+- dock the chat form at the bottom
+- added player color and coors to the object
+- chat docs at the bottom
 - added Chat
 - create link from single player to multiplayer
 - prompt player name

@@ -224,6 +224,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BrainEaters\BrainEatersGame.cs" />
     <Compile Include="Models\BrainEaters\GameEngine.cs" />
+    <Compile Include="Models\BrainEaters\Services.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />

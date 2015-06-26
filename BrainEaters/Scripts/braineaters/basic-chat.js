@@ -1,5 +1,5 @@
 ﻿// reference DOM elements
-var frm = document.getElementById('frm');
+var frm = document.getElementById('chat-form');
 var messageInput = document.getElementById('input');
 var messageList = document.getElementById('chat-messages');
 
@@ -17,6 +17,6 @@ $.connection.hub.start().done(function () {
 });
 
 // when server calls us, show messages from other users
-chat.client.sendMessage = function (callerName, message) {
+chat.client.postMessage = function (callerName, message) {
     messageList.innerHTML+= '<li><strong>' + callerName + ":  </strong>" + message + '</li>';
 };

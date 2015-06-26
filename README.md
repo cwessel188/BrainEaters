@@ -3,6 +3,7 @@ This project started out as a weekend assignment, which resulted in the single p
 
 <h2>Brain Eaters: Multiplayer</h2>
 http://braineaters.azurewebsites.net/
+
 To start with, I had a JavaScript only single player version of the game. My first priority was to move all the game logic into a serverside Game Engine and Game object. The Game contains the board, a list of the current players. The Game Engine controls things like adding players and how the players and zombies move on the board.
 
 The Game object itself is a thread safe singleton, which means there will only ever be exactly 1 instance created.

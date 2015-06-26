@@ -25,7 +25,7 @@ namespace BrainEaters.Hubs
         {
 
             var Plr = BrainEatersGame.Instance.Players.Find(p => p.ConnectionId == Context.ConnectionId);
-            Clients.All.SendMessage(Plr.Name, message); 
+            Clients.All.PostMessage(Plr.Name, message); 
         }
 
         /// <summary>
@@ -63,6 +63,7 @@ namespace BrainEaters.Hubs
             var NewPlayerId = Context.ConnectionId;
             GameEngine.AddPlayer(NewPlayerId, Name);
             Clients.Caller.UpdateGame(_game);
+            Clients.All.PostMessage("Server:", Name + " has joined the game.");
         }
 
         public int TestMethod(string message)

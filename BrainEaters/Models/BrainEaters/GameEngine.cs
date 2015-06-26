@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BrainEaters.Models.BrainEaters;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -14,12 +15,13 @@ namespace BrainEaters.Models
         /// <param name="playerName">the name of the player</param>
         internal static void AddPlayer(string CxnId, string playerName)
         {
-            // TODO add player names
+
             var Plr = new Player();
             Plr.Name = playerName;
             Plr.PlrChar = (char) (BrainEatersGame.Instance.Players.Count + 48);
             Plr.Id = CxnId;
             Plr.ConnectionId = CxnId;
+            Plr.Color = Services.RandomColor();
 
             BrainEatersGame.Instance.Players.Add(Plr);
 

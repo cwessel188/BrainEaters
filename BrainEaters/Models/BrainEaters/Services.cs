@@ -11,7 +11,10 @@ namespace BrainEaters.Models.BrainEaters
         internal static string RandomColor()
         {
             var rnd = new Random();
-            return "#" + rnd.Next(256).ToString("X") + rnd.Next(256).ToString("X") + rnd.Next(256).ToString("X");
+            return "#" + 
+                (rnd.Next(240) + 16).ToString("X") +
+                (rnd.Next(240) + 16).ToString("X") +
+                (rnd.Next(240) + 16).ToString("X");
         }
 
     }

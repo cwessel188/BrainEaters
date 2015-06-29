@@ -7,29 +7,36 @@
 <html>
 <head>
     <title>Brain Eaters!</title>
+    @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="row">
-        <div class="col-md-8">
-            <canvas id="gameCanvas" width="500" height="500" style="border-style: solid" tabindex="1"></canvas>
-            <div style="border-style: solid; width:500px">
-                <p id="score"></p>
-                <p id="status"></p>
-            </div></div>
-        <div class="col-md-4" id="chatWindow">
-            Chat with online players!
-            <form id="frm">
-                <input id="input" autocomplete="off" />
-                <input type="submit" value="Send" />
-            </form>
-
-            <ul id="chat-messages" style="list-style-type: none"></ul>
+    <div class="container" >
+        <div class="row" id="game-content">
+            <div class="col-md-8">
+                <canvas id="gameCanvas" width="500" height="500" style="border-style: solid" tabindex="1"></canvas>
+                @*<div style="border-style: solid; width:500px">
+                        <p id="score"></p>
+                        <p id="status"></p>
+                    </div>*@
+                <p>
+                    <a href="~/BrainEaters/ClientSideGame">Single Player Game</a>
+                </p>
+            </div>
+            <div class="col-md-4" id="chat-window">
+                <ul id="chat-messages"></ul>
+                <form id="chat-form">
+                    <p>
+                        Chat with online players!
+                    </p>
+                    <input id="input" autocomplete="off" />
+                    <input type="submit" value="Send" />
+                </form>
+            </div>
         </div>
     </div>
-    
 
-    <a href="~/BrainEaters/ClientSideGame">Single Player Game</a>
-    
+
+
 
     <!-- get JQuery from CDN for ease of client side loading -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -40,5 +47,6 @@
 
     <script src="~/Scripts/braineaters/client.js"></script>
     <script src="~/Scripts/braineaters/basic-chat.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>

@@ -2,6 +2,8 @@
 This project started out as a weekend assignment, which resulted in the single player version of the game. I had the idea to include multiplayer support, and the project grew from there.
 
 <h2>Brain Eaters: Multiplayer</h2>
+http://braineaters.azurewebsites.net/
+
 To start with, I had a JavaScript only single player version of the game. My first priority was to move all the game logic into a serverside Game Engine and Game object. The Game contains the board, a list of the current players. The Game Engine controls things like adding players and how the players and zombies move on the board.
 
 The Game object itself is a thread safe singleton, which means there will only ever be exactly 1 instance created.
@@ -29,7 +31,7 @@ What's Next:
  - making the game mechanics more complex (adding walls, more sophisticated zombie movement)
 
 <h2>The Single Player Game</h2>
-[Link to single player version is on the bottom of the game]
+http://braineaters.azurewebsites.net/BrainEaters/ClientSideGame
 
 The original version uses only JavaScript to create and manipulate game objects, with JQuery to handle key presses. All the entities are created at the beginning of the game, and there is a loop to continually draw the game, as well as a listener that triggers on key presses and updates the game accordingly.
 

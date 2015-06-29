@@ -67,21 +67,24 @@ BEhub.client.isDead = function () {
     alert("You've been eaten!");
 };
 
-// ********************************* DRAW GAME **********************************
+// ********************************* DRAW GAME ************************************
 
 var drawGame = function (data) {
     for (let x in data.GameArray) {
         for (let y in data.GameArray[x]) {
             switch (data.GameArray[x][y]) {
                 case "-":
+                    context.fillStyle = "#FFFFFF";
                     context.fillRect(data.CellWidth * x, data.CellWidth * y, data.CellWidth, data.CellWidth);
                     break;
                 case ("0"): // 0 is falsey and must be handled seperately
-                    drawPlayer(0, x, y, data.CellWidth);
+                    // drawPlayerAsImage(0, x, y, data.CellWidth);
+                    drawPlayerAsColor(data, 0, x, y, data.CellWidth)
                     break;
                 default:
                     if (parseInt(data.GameArray[x][y], 10)) { // it's a number
-                        drawPlayer(parseInt(data.GameArray[x][y], 10), x, y, data.CellWidth);
+                        // drawPlayerAsImage(parseInt(data.GameArray[x][y], 10), x, y, data.CellWidth);
+                        drawPlayerAsColor(data, parseInt(data.GameArray[x][y], 10), x, y, data.CellWidth);
                     }
                     else {
                         console.log("Error in drawPlayer: char not recognized" + data.GameArray[x][y]);
@@ -91,9 +94,15 @@ var drawGame = function (data) {
     }      // for y
 };         // draw game
 
-var drawPlayer = function (plrNumber, x, y, cellWidth) {
+var drawPlayerAsImage = function (plrNumber, x, y, cellWidth) {
     context.drawImage(
         window["player" + plrNumber].img,
         cellWidth * x + IMG_PADDING, cellWidth * y + IMG_PADDING,
         IMG_SIZE, IMG_SIZE);
+};
+
+var drawPlayerAsColor = function (data, plrNumber, x, y, cellWidth) {
+    context.fillStyle = data.Players[plrNumber].Color;
+    context.fillRect(cellWidth * x + IMG_PADDING, cellWidth * y + IMG_PADDING, // coors
+        IMG_SIZE, IMG_SIZE); // size
 };

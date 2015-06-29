@@ -19,5 +19,6 @@ namespace BrainEaters.Models
         public int Xcoor { get; set; }
         public int Ycoor { get; set; }
         public string Color { get; set; }
+
     }
 }

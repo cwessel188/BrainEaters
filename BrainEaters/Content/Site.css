@@ -37,14 +37,28 @@ textarea {
 
 /*================================ STYLES ==============================*/
 
+#content {
+    padding: 20px 50px 50px 50px;
+}
+
+#game-canvas {
+    border-style: solid;
+    visibility: hidden;
+}
+
 #chat-form {
     position: fixed;
     right: 50px;
     bottom: 0;
 }
-/*TODO make this window scrollable*/
+
 #chat-window {
+    padding-right: 50px;
     list-style-type: none;
     height: 80vh;
     overflow-y: scroll;
+}
+
+.from {
+    font-weight: bold;
 }

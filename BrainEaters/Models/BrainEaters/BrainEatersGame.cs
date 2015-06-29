@@ -21,25 +21,25 @@ namespace BrainEaters.Models
         private BrainEatersGame() {
             // TODO pass dimensions to constructor
             //(500, 500, 50, 10, 10)
-            int boardLength = 500;
-            int boardWidth = 500;
+            int boardWidth = 800;
+            int boardHeight = 500;
             int cellWidth = 50;
             // int numZombies = 10;
             // int numFood = 10;
 
             var rand = new Random();
-            int numCellColumns = boardLength / cellWidth;
-            int numCellRows = boardWidth / cellWidth;
+            NumberCellCols = boardWidth / cellWidth;
+            NumberCellRows = boardHeight / cellWidth;
 
             //    var game = new BrainEatersGame();
             CellWidth = cellWidth;
             // make the array
-            GameArray = new char[numCellColumns, numCellRows];
+            GameArray = new char[NumberCellCols, NumberCellRows];
 
             // fill array with empty spaces (empty array?)
-            for (int i = 0; i < numCellColumns; i++)
+            for (int i = 0; i < NumberCellCols; i++)
             {
-                for (int j = 0; j < numCellRows; j++)
+                for (int j = 0; j < NumberCellRows; j++)
                 {
                     GameArray[i, j] = '-';
                 }
@@ -89,5 +89,7 @@ namespace BrainEaters.Models
         public char[,] GameArray { get; set; }
         public List<Player> Players { get; set; }
         public int CellWidth { get; set; }
+        public int NumberCellRows { get; set; }
+        public int NumberCellCols { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace BrainEaters.Models
 
             var Plr = new Player();
             Plr.Name = playerName;
-            Plr.PlrChar = (char) (BrainEatersGame.Instance.Players.Count + 48);
+            Plr.PlrChar = (char)(BrainEatersGame.Instance.Players.Count + 48);
             Plr.Id = CxnId;
             Plr.ConnectionId = CxnId;
             Plr.Color = Services.RandomColor();
@@ -62,41 +62,46 @@ namespace BrainEaters.Models
         /// </summary>
         /// <param name="keyCode">the key pressed</param>
         /// <returns>false if the player's char is not on the board.</returns>
-        public static bool MovePlayer(string PlayerId, int keyCode)
+        public static void MovePlayer(string PlayerId, int keyCode)
         {
+            var game = BrainEatersGame.Instance;
+            var player = game.Players.Find(p => p.Id == PlayerId);
 
-            var plr = BrainEatersGame.Instance.Players.Find(p => p.Id == PlayerId);
-            var plrChar = plr.PlrChar;
-            int x;
-            int y;
-            if (!FindEntity(plrChar, out x, out y))
-            {
-                return false;
-            }
             switch (keyCode)
             {
                 // short circuiting stops me from using (65 || 37)
                 case 65: // A or left
                 case 37:
-                    MoveLeft(plrChar, x, y);
+                    if (player.Xcoor > 0)
+                    {
+                        player.Xcoor--;
+                    }
                     break;
                 case 68: // D or right
                 case 39:
-                    MoveRight(plrChar, x, y);
+                    if (player.Xcoor < game.NumberCellCols - 1)
+                    {
+                        player.Xcoor++;
+                    }
                     break;
                 case 87: // W or up
                 case 38:
-                    MoveNorth(plrChar, x, y);
+                    if (player.Ycoor > 0)
+                    {
+                        player.Ycoor--;
+                    }
                     break;
                 case 83: // S or down
                 case 40:
-                    MoveSouth(plrChar, x, y);
+                    if (player.Ycoor < game.NumberCellRows - 1)
+                    {
+                        player.Ycoor++;
+                    }
                     break;
             }
-            return true;
         }
-        
-         
+
+
         /// <summary>
         /// Finds the first instance of the char in the array
         /// </summary>
@@ -106,7 +111,7 @@ namespace BrainEaters.Models
         /// <param name="y">the player's Y coordinate, -1 if not found</param>
         private static bool FindEntity(char entityChar, out int x, out int y)
         {
-           
+
             x = -1;
             y = -1;
             char chr;

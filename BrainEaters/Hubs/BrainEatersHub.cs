@@ -25,7 +25,7 @@ namespace BrainEaters.Hubs
         {
 
             var Plr = BrainEatersGame.Instance.Players.Find(p => p.ConnectionId == Context.ConnectionId);
-            Clients.All.PostMessage(Plr.Name, message); 
+            Clients.All.PostMessage(Plr, message); 
         }
 
         /// <summary>
@@ -34,14 +34,8 @@ namespace BrainEaters.Hubs
         /// <param name="KeyCode"></param>
         public void KeyPressed(int KeyCode) 
         {
-            if (GameEngine.MovePlayer(Context.ConnectionId, KeyCode))
-            {
-                Clients.All.UpdateGame(_game);
-            }
-            else 
-            {
-                Clients.Caller.IsDead();
-            }
+            GameEngine.MovePlayer(Context.ConnectionId, KeyCode);
+            Clients.All.UpdateGame(_game);
         }
 
         /// <summary>
@@ -62,13 +56,8 @@ namespace BrainEaters.Hubs
             // TODO add a line to the chat when a player logs in or out. 
             var NewPlayerId = Context.ConnectionId;
             GameEngine.AddPlayer(NewPlayerId, Name);
-            Clients.Caller.UpdateGame(_game);
-            Clients.All.PostMessage("Server:", Name + " has joined the game.");
-        }
-
-        public int TestMethod(string message)
-        {
-            return 0;
+            Clients.Caller.SetupGame(_game);
+            Clients.All.PostServerMessage(Name + " has joined the game.");
         }
 
         public override Task OnDisconnected(bool stopCalled)

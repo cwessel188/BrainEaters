@@ -8,6 +8,16 @@ create a partial for player logins prompting name and color
 
 BACKLOG ======================================================================
 
+validate length of names 
+
+link to github
+add a bug/feature report
+add contact me
+add controls
+
+make chat scroll better
+
+
 write a respawn function
 
  move to typescript

@@ -17,6 +17,13 @@ $.connection.hub.start().done(function () {
 });
 
 // when server calls us, show messages from other users
-chat.client.postMessage = function (callerName, message) {
-    messageList.innerHTML+= '<li><strong>' + callerName + ":  </strong>" + message + '</li>';
+chat.client.postMessage = function (player, message) {
+    messageList.innerHTML+= '<li>' + 
+        '<span class="from" style="color:' + player.Color + '">' + player.Name + ": </span>" +
+        message + '</li>';
+};
+
+// comments
+chat.client.postServerMessage = function (message) {
+    messageList.innerHTML += '<li>' + message + '</li>';
 };

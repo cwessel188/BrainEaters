@@ -74,6 +74,10 @@ BUGS ======================================================================
 
 assigning plrchar based on the length of the player array is a bad idea.
 
+online, pushing down right silumtaneously occasionally results in a second icon appearing.
+
+occasionally players from differenct connections will control the same icon  .
+
 FIXED =====================================================================
 - added 'tabindex="1"', which allow the canvas to be in focus and captures the listener
 	so that chat messages no longer mode the players

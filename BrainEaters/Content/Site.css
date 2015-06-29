@@ -37,6 +37,10 @@ textarea {
 
 /*================================ STYLES ==============================*/
 
+#content {
+    padding: 20px 50px 50px 50px;
+}
+
 #game-canvas {
     border-style: solid;
     visibility: hidden;
@@ -49,6 +53,7 @@ textarea {
 }
 
 #chat-window {
+    padding-right: 50px;
     list-style-type: none;
     overflow-y: scroll;
 }

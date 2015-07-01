@@ -16,17 +16,23 @@ namespace BrainEaters.Models
         internal static void AddPlayer(string CxnId, string playerName)
         {
 
+            var game = BrainEatersGame.Instance;
             var Plr = new Player();
             Plr.Name = playerName;
-            Plr.PlrChar = (char)(BrainEatersGame.Instance.Players.Count + 48);
+            Plr.PlrChar = (char)(game.Players.Count + 48);
             Plr.Id = CxnId;
             Plr.ConnectionId = CxnId;
             Plr.Color = Services.RandomColor();
 
-            BrainEatersGame.Instance.Players.Add(Plr);
+            game.Players.Add(Plr);
 
             // add player to upper left of game
             BrainEatersGame.Instance.GameArray[0, 0] = Plr.PlrChar;
+
+            if (game.HighlightedPlayer == null)
+            {
+                game.HighlightedPlayer = Plr;
+            }
         }
 
         /// <summary>
@@ -35,24 +41,31 @@ namespace BrainEaters.Models
         /// <param name="CxnId">the connection Id of the player's client</param>
         internal static void RemovePlayer(string CxnId)
         {
-            var player = BrainEatersGame.Instance.Players.Find(p => p.Id == CxnId);
+            var game = BrainEatersGame.Instance;
+            var player = game.Players.Find(p => p.Id == CxnId);
 
             if (player != null)
             {
+                
+                // reset highlitedPlayer
+                if (game.HighlightedPlayer == player)
+                {
+                    game.HighlightedPlayer = game.Players.Last();
+                }
                 // remove player from playerlist
-                BrainEatersGame.Instance.Players.Remove(player);
+                game.Players.Remove(player);
                 // remove plrChar from board
                 int x, y = 0;
                 if (FindEntity(player.PlrChar, out x, out y))
                 {
-                    BrainEatersGame.Instance.GameArray[x, y] = '-';
+                    game.GameArray[x, y] = '-';
                 }
+                          
 
             }
             else
             {
                 // TODO figure out a way to handle this.
-                int i = 0; i++;
             }
 
         }
@@ -61,7 +74,6 @@ namespace BrainEaters.Models
         /// Moves the player inside the GameArray according to arrow keys or WSAD
         /// </summary>
         /// <param name="keyCode">the key pressed</param>
-        /// <returns>false if the player's char is not on the board.</returns>
         public static void MovePlayer(string PlayerId, int keyCode)
         {
             var game = BrainEatersGame.Instance;

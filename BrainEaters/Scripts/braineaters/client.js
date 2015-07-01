@@ -84,9 +84,17 @@
     // ********************************* DRAW GAME ************************************
 
     var drawGame = function (data) {
+        // fill with white
         context.fillStyle = "#FFFFFF"
         context.fillRect(0, 0, data.CellWidth * data.NumberCellCols, data.CellWidth * data.NumberCellRows)
+        // draw players
         data.Players.forEach(drawPlayerAsColor);
+        // highlight a player
+        context.fillStyle = "#000000";
+        context.beginPath();
+        context.rect(CELL_WIDTH * data.HighlightedPlayer.Xcoor, CELL_WIDTH * data.HighlightedPlayer.Ycoor, // coors
+            IMG_SIZE, IMG_SIZE)
+        context.stroke();
     };         // draw game
 
     var drawPlayerAsImage = function (plrNumber, x, y, cellWidth) {
@@ -97,7 +105,6 @@
     };
 
     var drawPlayerAsColor = function (element, index, array) {
-
         context.fillStyle = element.Color;
         context.fillRect(CELL_WIDTH * element.Xcoor + IMG_PADDING, CELL_WIDTH * element.Ycoor + IMG_PADDING, // coors
             IMG_SIZE, IMG_SIZE); // size

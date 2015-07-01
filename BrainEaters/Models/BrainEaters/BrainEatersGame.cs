@@ -88,6 +88,7 @@ namespace BrainEaters.Models
 
         public char[,] GameArray { get; set; }
         public List<Player> Players { get; set; }
+        public Player HighlightedPlayer { get; set; }
         public int CellWidth { get; set; }
         public int NumberCellRows { get; set; }
         public int NumberCellCols { get; set; }

@@ -12,40 +12,25 @@
         <div class="col-lg-12">
             <canvas id="game-canvas" style="border-style: solid" tabindex="1"></canvas>
             @*<div style="border-style: solid; width:500px">
-                    <p id="score"></p>
-                    <p id="status"></p>
-                </div>*@
+                <p id="score"></p>
+                <p id="status"></p>
+            </div>*@
             <p>
                 <a href="~/BrainEaters/ClientSideGame">Single Player Game</a>
             </p>
         </div>
     </div>
-    <div class="grid-container">
-        <div class="grid-40">
-            I am 50% wide.
-        </div>
-        <div class="grid-10">
-            I am 10% wide.
-        </div>
-        <div class="grid-15">
-            I am 15% wide.
-        </div>
-        <div class="grid-35" id="chat-content">
-            I am the 35%
-            <div>
-                <ul id="chat-messages"></ul>
-                <form id="chat-form">
-                    <p>
-                        Chat with online players!
-                    </p>
-                    <input id="input" autocomplete="off" />
-                    <input type="submit" value="Send" />
-                </form>
-            </div>
 
+    <div id="chat-content">
+        <ul id="chat-messages"></ul>
+            <form id="chat-form">
+                <p>
+                    Chat with online players!
+                </p>
+                <input id="input" autocomplete="off" />
+                <input type="submit" value="Send" />
+            </form>
         </div>
-    </div>
-
 
 
 
@@ -59,41 +44,5 @@
     <script src="~/Scripts/braineaters/client.js"></script>
     <script src="~/Scripts/braineaters/basic-chat.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Content/unsemantic")
-
-    <link href="~/Content/unsemantic/ie-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/ie.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/reset-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/reset.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/text.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-base-no-ie7-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-base-no-ie7.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-base-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-base-tablet-no-ie7-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-base-tablet-no-ie7.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-base-tablet-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-base-tablet.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-base.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-desktop-no-ie7-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-desktop-no-ie7.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-desktop-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-desktop.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-mobile-no-ie7-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-mobile-no-ie7.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-mobile-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-mobile.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-responsive-no-ie7-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-responsive-no-ie7.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-responsive-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-responsive-tablet-no-ie7-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-responsive-tablet-no-ie7.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-responsive-tablet-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-responsive-tablet.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-responsive.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-tablet-no-ie7-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-tablet-no-ie7.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-tablet-rtl.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/unsemantic-grid-tablet.css" rel="stylesheet" />
-    <link href="~/Content/unsemantic/demo.css" rel="stylesheet" />
 </body>
 </html>

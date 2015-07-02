@@ -52,14 +52,12 @@ textarea {
 
 #chat-content {
     position: absolute;
-    /*padding: 50px 0 50px 0;
+    padding: 50px 0 50px 0;
     right: 0;
-        */
     top: 0;
     bottom: 0;
-    /*
     overflow-y: scroll;
-    width: 400px;*/
+    width: 400px;
     background-color: #f2f2f2;
 }
 

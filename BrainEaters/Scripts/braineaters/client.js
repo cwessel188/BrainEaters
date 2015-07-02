@@ -49,8 +49,8 @@
 
         // this syxtax works because I set tabindex="1" on the convas element
         $(canvas).keydown(function (e) {
-            console.log(event.keyCode);
-            BEhub.server.keyPressed(event.keyCode);
+            console.log(e.keyCode);
+            BEhub.server.keyPressed(e.keyCode);
         });
 
     });

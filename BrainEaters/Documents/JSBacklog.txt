@@ -11,3 +11,10 @@ create difficulty mode based on timer
 move to typescript
 
 Poll character death 
+
+BUG=========================
+- single player controls don't work on firefox because event is a keyword in Chrome
+
+FIXED =====================
+
+changed to use the even parameter 'e' on the window listener.

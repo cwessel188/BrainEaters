@@ -130,8 +130,8 @@ entities.push(steve);
 
 // *****************************************GAME FUNCTIONS**********************************************
 
-$(window).keydown(function (e) {  // on keydown
-    keyPressed(event.keyCode);
+$(document).keydown(function (e) {  // on keydown
+    keyPressed(e.keyCode);
 });
 
 

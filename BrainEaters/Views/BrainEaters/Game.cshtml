@@ -12,35 +12,32 @@
         <div class="col-lg-12">
             <canvas id="game-canvas" style="border-style: solid" tabindex="1"></canvas>
             @*<div style="border-style: solid; width:500px">
-                <p id="score"></p>
-                <p id="status"></p>
-            </div>*@
+                    <p id="score"></p>
+                    <p id="status"></p>
+                </div>*@
             <p>
                 <a href="~/BrainEaters/ClientSideGame">Single Player Game</a>
             </p>
         </div>
     </div>
-
     <div id="chat-content">
-        <ul id="chat-messages"></ul>
-            <form id="chat-form">
-                <p>
-                    Chat with online players!
-                </p>
-                <input id="input" autocomplete="off" />
-                <input type="submit" value="Send" />
-            </form>
+        <div id="chat-messages">
+            <ul id="chat-message-list"></ul>
         </div>
-
-
+        <form id="chat-form">
+            <p>
+                Chat with online players!
+            </p>
+            <input id="input" autocomplete="off" />
+            <input type="submit" value="Send" />
+        </form>
+    </div>
 
     <!-- get JQuery from CDN for ease of client side loading -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="~/Scripts/jquery.signalR-2.1.2.min.js"></script>
-
     <!-- this does not exist. it's dynamically generated in memory and becomes a proxy for talking to signalR -->
     <script src="~/signalR/hubs"></script>
-
     <script src="~/Scripts/braineaters/client.js"></script>
     <script src="~/Scripts/braineaters/basic-chat.js"></script>
     @Scripts.Render("~/bundles/bootstrap")

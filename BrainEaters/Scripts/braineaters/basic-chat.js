@@ -1,12 +1,12 @@
 ﻿// reference DOM elements
 var frm = document.getElementById('chat-form');
 var messageInput = document.getElementById('input');
-var messageList = document.getElementById('message-list');
-var chatWindow = document.getElementById('chat-window');
+var messageList = document.getElementById('chat-messages');
+var chatWindow = document.getElementById('chat-content');
 
 
 // make sure windows scrolls to last message
-chatWindow.scrollTop = chatWindow.scrollHeight;
+messageList.scrollTop = messageList.scrollHeight;
 
 // reference hub
 var chat = $.connection.brainEatersHub;
@@ -29,7 +29,7 @@ chat.client.postMessage = function (player, message) {
 
 
     // make sure windows scrolls to last message
-    chatWindow.scrollTop = chatWindow.scrollHeight; 
+    messageList.scrollTop = messageList.scrollHeight;
 };
 
 // comments

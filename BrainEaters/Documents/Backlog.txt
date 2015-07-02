@@ -73,6 +73,11 @@ from emily:
 		lazers
 		zombies
 
+ MOBILE SITE:
+		hide chat
+		add listeners to the 4 quandrants od the screen for movement
+
+
 DONE ======================================================================
 
 - make chat scroll better
@@ -90,6 +95,9 @@ DONE ======================================================================
 	the player and zomies will both call this
 BUGS ======================================================================
 
+
+- single player controls don't work on firefox because event is a keyword in Chrome
+
 assigning plrchar based on the length of the player array is a bad idea.
 
 online, pushing down right silumtaneously occasionally results in a second icon appearing.
@@ -97,6 +105,9 @@ online, pushing down right silumtaneously occasionally results in a second icon 
 occasionally players from differenct connections will control the same icon  .
 
 FIXED =====================================================================
+
+- changed event.keycode to e.keycode
+
 - added 'tabindex="1"', which allow the canvas to be in focus and captures the listener
 	so that chat messages no longer mode the players
 

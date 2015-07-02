@@ -9,6 +9,7 @@ namespace BrainEaters.Models
 {
     public static class GameEngine
     {
+
         /// <summary>
         /// Creates a player and adds his PlrChar to the board
         /// </summary>
@@ -39,28 +40,27 @@ namespace BrainEaters.Models
         /// Removes the Player from the PlayerList, and the Plrchar from the board
         /// </summary>
         /// <param name="CxnId">the connection Id of the player's client</param>
-        internal static void RemovePlayer(string CxnId)
+        internal static void RemovePlayer(Player player)
         {
             var game = BrainEatersGame.Instance;
-            var player = game.Players.Find(p => p.Id == CxnId);
 
             if (player != null)
             {
-                
+                // remove player from playerlist
+                game.Players.Remove(player);
                 // reset highlitedPlayer
                 if (game.HighlightedPlayer == player)
                 {
-                    game.HighlightedPlayer = game.Players.Last();
+                    game.HighlightedPlayer = game.Players.LastOrDefault();
                 }
-                // remove player from playerlist
-                game.Players.Remove(player);
+
                 // remove plrChar from board
                 int x, y = 0;
                 if (FindEntity(player.PlrChar, out x, out y))
                 {
                     game.GameArray[x, y] = '-';
                 }
-                          
+
 
             }
             else
@@ -77,7 +77,7 @@ namespace BrainEaters.Models
         public static void MovePlayer(string PlayerId, int keyCode)
         {
             var game = BrainEatersGame.Instance;
-            var player = game.Players.Find(p => p.Id == PlayerId);
+            var player = Services.GetPlayerById(game, PlayerId);
 
             switch (keyCode)
             {
@@ -110,6 +110,31 @@ namespace BrainEaters.Models
                         player.Ycoor++;
                     }
                     break;
+            }
+
+            HandleCollisions(game, player);
+        }
+
+        private static void HandleCollisions(BrainEatersGame game, Player player)
+        {
+            // check all players
+            foreach (var otherplayer in game.Players)
+            {
+                // use short circuiting to do multiple checks at once
+                if (player != otherplayer &&
+                    (otherplayer.Xcoor == player.Xcoor && otherplayer.Ycoor == player.Ycoor))
+                    {   // collision
+                        if (player == game.HighlightedPlayer)
+                        {
+                            game.HighlightedPlayer = otherplayer;
+                            return;
+                        }
+                        if (otherplayer == game.HighlightedPlayer)
+                        {
+                            game.HighlightedPlayer = player;
+                            return;
+                        }
+                    }
             }
         }
 

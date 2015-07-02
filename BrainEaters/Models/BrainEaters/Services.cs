@@ -8,6 +8,12 @@ namespace BrainEaters.Models.BrainEaters
     public class Services
     {
 
+        internal static Player GetPlayerById(BrainEatersGame game, string id)
+        {
+            return game.Players.Find(p => p.Id == id);
+        }
+
+
         internal static string RandomColor()
         {
             var rnd = new Random();

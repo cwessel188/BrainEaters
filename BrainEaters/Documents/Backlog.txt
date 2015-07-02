@@ -8,6 +8,7 @@ create a partial for player logins prompting name and color
 
 BACKLOG ======================================================================
 
+add a list of online players.
 validate length of names 
 
 link to github
@@ -15,8 +16,7 @@ add a bug/feature report
 add contact me
 add controls
 
-make chat scroll better
-
+make chat visible from all views
 
 write a respawn function
 
@@ -75,6 +75,7 @@ from emily:
 
 DONE ======================================================================
 
+- make chat scroll better
 - dock the chat form at the bottom
 - added player color and coors to the object
 - chat docs at the bottom

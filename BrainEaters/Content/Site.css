@@ -37,8 +37,8 @@ textarea {
 
 /*================================ STYLES ==============================*/
 
-#content {
-    padding: 20px 50px 50px 50px;
+.be-content {
+    margin: 20px 50px 50px 50px;
 }
 
 #game-canvas {
@@ -48,8 +48,8 @@ textarea {
 
 #chat-form {
     position: fixed;
-    right: 50px;
-    bottom: 0;
+    right: 100px;
+    bottom: 10px;
 }
 
 #chat-window {

@@ -37,6 +37,10 @@ textarea {
 
 /*================================ STYLES ==============================*/
 
+.row {
+    width: 100%;
+}
+
 #content {
     padding: 20px 50px 50px 50px;
 }
@@ -46,17 +50,27 @@ textarea {
     visibility: hidden;
 }
 
+#chat-content {
+    position: absolute;
+    padding: 50px 0 50px 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    width: 400px;
+    background-color: #f2f2f2;
+}
+
 #chat-form {
-    position: fixed;
-    right: 50px;
+    position: absolute;
+    padding: 0 0 50px 0;
+    left: 25px;
     bottom: 0;
 }
 
-#chat-window {
-    padding-right: 50px;
+#chat-messages {
+    padding-left: 10px;
     list-style-type: none;
-    height: 80vh;
-    overflow-y: scroll;
 }
 
 .from {

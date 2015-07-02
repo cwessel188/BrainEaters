@@ -1,7 +1,8 @@
 ﻿// reference DOM elements
 var frm = document.getElementById('chat-form');
 var messageInput = document.getElementById('input');
-var messageList = document.getElementById('chat-messages');
+var messageListDiv = document.getElementById('chat-messages');
+var messageList = document.getElementById('chat-message-list');
 var chatWindow = document.getElementById('chat-content');
 
 

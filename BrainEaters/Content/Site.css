@@ -41,9 +41,9 @@ textarea {
     width: 100%;
 }
 
-#content {
+#game-content {
     padding: 20px 50px 50px 50px;
-}
+}  
 
 #game-canvas {
     border-style: solid;
@@ -68,13 +68,13 @@ textarea {
 }
 
 #chat-messages {
-    padding-left: 10px;
     overflow-y: scroll;
     height: 80vh;
 }
 
 #chat-message-list {
     list-style-type: none;
+    padding-left:10px;
 }
 
 .from {

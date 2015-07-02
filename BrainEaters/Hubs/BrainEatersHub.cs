@@ -58,7 +58,8 @@ namespace BrainEaters.Hubs
             var NewPlayerId = Context.ConnectionId;
             GameEngine.AddPlayer(NewPlayerId, Name);
             Clients.Caller.SetupGame(_game);
-            Clients.All.PostServerMessage(Name + " has joined the game.");
+            Clients.Others.PostServerMessage(Name + " has joined the game.");
+            Clients.Caller.PostServerMessage("Welcome to BrainEaters! You can chat with online users and play tag! Use WSAD or the arrow keys to control the game.");
         }
 
         public override Task OnDisconnected(bool stopCalled)

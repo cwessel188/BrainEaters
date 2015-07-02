@@ -10,11 +10,13 @@
 <body>
     <div class="row" id="game-content">
         <div class="col-lg-12">
-            <canvas id="game-canvas" style="border-style: solid" tabindex="1"></canvas>
-            @*<div style="border-style: solid; width:500px">
-                    <p id="score"></p>
-                    <p id="status"></p>
-                </div>*@
+            <canvas id="game-canvas" tabindex="1"></canvas>
+            <p>
+                See the source code on my <a href="https://github.com/cwessel188">GitHub</a>! <br />
+                Send bug reports, feature requests, job opportunities, dinner invitations, and money
+                to cwessel188@gmail.com!
+            </p>
+            <hr />
             <p>
                 <a href="~/BrainEaters/ClientSideGame">Single Player Game</a>
             </p>
@@ -39,7 +41,7 @@
     <!-- this does not exist. it's dynamically generated in memory and becomes a proxy for talking to signalR -->
     <script src="~/signalR/hubs"></script>
     <script src="~/Scripts/braineaters/client.js"></script>
-    <script src="~/Scripts/braineaters/basic-chat.js"></script>
+    <script src="~/Scripts/braineaters/chat.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>

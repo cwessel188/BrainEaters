@@ -92,8 +92,8 @@
         // highlight a player
         context.fillStyle = "#000000";
         context.beginPath();
-        context.rect((CELL_WIDTH + IMG_PADDING) * data.HighlightedPlayer.Xcoor, (CELL_WIDTH + IMG_PADDING) * data.HighlightedPlayer.Ycoor, // coors
-            IMG_SIZE, IMG_SIZE)
+        context.rect(CELL_WIDTH * data.HighlightedPlayer.Xcoor, CELL_WIDTH * data.HighlightedPlayer.Ycoor, // coors
+            IMG_SIZE + 2 * IMG_PADDING, IMG_SIZE + 2 * IMG_PADDING);
         context.stroke();
     };         // draw game
 

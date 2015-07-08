@@ -4,26 +4,13 @@
     'use strict';
     // ******************************** SET UP ********************************
 
+
+    // this is how you'd inject a canvas using JQuery. I'm using the CSS display:none instead.
+    // $("#canvas-div").append('<canvas id="new"></canvas>');
+
     var canvas = document.getElementById("game-canvas");
     var context = canvas.getContext("2d");
     context.fillStyle = "#FFFFFF";
-
-    var scoretextarea = document.getElementById('score');
-    var statustextarea = document.getElementById('status');
-    
-    const ZOMBIE_IMG = "../Content/images/Passive_Zombie.png";
-    const FOOD_IMG = "../Content/images/mushroom.png";
-    const PLR0_IMG = "../Content/images/pacman.png";
-    const PLR1_IMG = "../Content/images/1.png";
-    const PLR2_IMG = "../Content/images/2.png";
-    const PLR3_IMG = "../Content/images/3.png";
-    const PLR4_IMG = "../Content/images/4.png";
-    const PLR5_IMG = "../Content/images/5.png";
-    const PLR6_IMG = "../Content/images/6.png";
-    const PLR7_IMG = "../Content/images/7.png";
-    const PLR8_IMG = "../Content/images/8.png";
-    const PLR9_IMG = "../Content/images/9.png";
-
 
     function entity(imgSrc) { // TODO Entity
         this.img = document.createElement('img');
@@ -38,16 +25,26 @@
 
     // ******************************** SIGNALR HUB **********************************
 
-    var playerName = prompt("Enter your name:", "Steve");
+    var playerName, color;
+    // old, crappy way of prompting a user's name
+    // playerName = prompt("Enter your name:", "Steve");
+
+    // new sleek way to get name
+    $("#login-frm").submit(function () {
+        playerName = this.name.value;
+        playerColor = this.color.value;
+        debugger;
+
+    });
 
     // start hub
     var BEhub = $.connection.brainEatersHub;
 
     // start the connection
     $.connection.hub.start().done(function () {
-        BEhub.server.addPlayer(playerName);
+        BEhub.server.addPlayer(playerName, playerColor);
 
-        // this syxtax works because I set tabindex="1" on the convas element
+        // this syxtax works because I set tabindex="1" on the canvas element
         $(canvas).keydown(function (e) {
             console.log(e.keyCode);
             BEhub.server.keyPressed(e.keyCode);
@@ -59,7 +56,7 @@
 
     var CELL_WIDTH;
     var IMG_PADDING; // pixels
-    var IMG_SIZE; // image height and width in pixels
+    var IMG_SIZE;    // image height and width in pixels
 
     BEhub.client.setupGame = function (data) {
         console.log("Setup");
@@ -68,7 +65,7 @@
         IMG_SIZE = data.CellWidth - (2 * IMG_PADDING);
         canvas.height = data.CellWidth * data.NumberCellRows;
         canvas.width = data.CellWidth * data.NumberCellCols;
-        canvas.style.visibility = "visible";
+        $(canvas).show();
 
         drawGame(data);
     };

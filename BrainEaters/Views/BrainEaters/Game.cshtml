@@ -8,19 +8,28 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="row" id="game-content">
-        <div class="col-lg-12">
-            <canvas id="game-canvas" tabindex="1"></canvas>
-            <p>
-                See the source code on my <a href="https://github.com/cwessel188">GitHub</a>! <br />
-                Send bug reports, feature requests, job opportunities, dinner invitations, and money
-                to cwessel188@gmail.com!
-            </p>
-            <hr />
-            <p>
-                <a href="~/BrainEaters/ClientSideGame">Single Player Game</a>
-            </p>
-        </div>
+    <div id="game-content">
+        <form id="login-frm">
+            <label>
+                Name:
+                <input type="text" name="name" />
+            </label>
+            <label>
+                Color:
+                <input type="color" name="color" />
+            </label>
+            <input type="submit" />
+        </form>
+        <canvas id="game-canvas" tabindex="1"></canvas>
+        <p>
+            See the source code on my <a href="https://github.com/cwessel188">GitHub</a>! <br />
+            Send bug reports, feature requests, job opportunities, dinner invitations, and money
+            to <a id="email-link">cwessel188@gmail.com</a>!
+        </p>
+        <hr />
+        <p>
+            <a href="~/BrainEaters/ClientSideGame">Single Player Game</a>
+        </p>
     </div>
     <div id="chat-content">
         <div id="chat-messages">
@@ -40,8 +49,11 @@
     <script src="~/Scripts/jquery.signalR-2.1.2.min.js"></script>
     <!-- this does not exist. it's dynamically generated in memory and becomes a proxy for talking to signalR -->
     <script src="~/signalR/hubs"></script>
+
     <script src="~/Scripts/braineaters/client.js"></script>
     <script src="~/Scripts/braineaters/chat.js"></script>
+    <script src="~/Scripts/braineaters/email-script.js"></script>
+
     @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>

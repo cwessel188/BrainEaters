@@ -366,6 +366,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\braineaters\client.js" />
+    <TypeScriptCompile Include="Scripts\braineaters\email-script.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\signalr\signalr.d.ts" />
   </ItemGroup>

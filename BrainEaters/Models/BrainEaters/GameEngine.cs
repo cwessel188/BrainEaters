@@ -14,7 +14,7 @@ namespace BrainEaters.Models
         /// Creates a player and adds his PlrChar to the board
         /// </summary>
         /// <param name="playerName">the name of the player</param>
-        internal static void AddPlayer(string CxnId, string playerName)
+        internal static void AddPlayer(string CxnId, string playerName, string color)
         {
 
             var game = BrainEatersGame.Instance;
@@ -23,7 +23,8 @@ namespace BrainEaters.Models
             Plr.PlrChar = (char)(game.Players.Count + 48);
             Plr.Id = CxnId;
             Plr.ConnectionId = CxnId;
-            Plr.Color = Services.RandomColor();
+
+            Plr.Color = color == "" ? Services.RandomColor() : color;
 
             game.Players.Add(Plr);
 

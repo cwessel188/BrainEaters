@@ -21,18 +21,16 @@ namespace BrainEaters.Models
         private BrainEatersGame() {
             // TODO pass dimensions to constructor
             //(500, 500, 50, 10, 10)
-            int boardWidth = 800;
+            int boardWidth = 500;
             int boardHeight = 500;
-            int cellWidth = 50;
+            CellWidth = 50;
             // int numZombies = 10;
             // int numFood = 10;
 
             var rand = new Random();
-            NumberCellCols = boardWidth / cellWidth;
-            NumberCellRows = boardHeight / cellWidth;
+            NumberCellCols = boardWidth / CellWidth;
+            NumberCellRows = boardHeight / CellWidth;
 
-            //    var game = new BrainEatersGame();
-            CellWidth = cellWidth;
             // make the array
             GameArray = new char[NumberCellCols, NumberCellRows];
 
@@ -45,24 +43,7 @@ namespace BrainEaters.Models
                 }
             }
 
-            /*
-             * For now, I'm removing these entities and creating a more 'tag' based game.
-             * This code is here for when I want to add I back in.
-            // add the zombies */
-            //for (int i = 0; i < numZombies; i++)
-            //{
-            //    GameArray[rand.Next(numCellColumns), rand.Next(numCellRows)] = 'z';
-            //}
 
-            /*
-            // add the food
-            for (int i = 0; i < numFood; i++)
-            {
-                GameArray[rand.Next(numCellColumns), rand.Next(numCellRows)] = 'f';
-            }
-            */
-
-            // 10 player maximum
             Players = new List<Player>();
 
 

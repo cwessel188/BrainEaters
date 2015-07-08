@@ -52,26 +52,29 @@ namespace BrainEaters.Hubs
         /// Should be called once by each client
         /// </summary>
         /// <param name="name">The name provided by the client</param>
-        public void AddPlayer(string Name)
+        public void AddPlayer(string name, string color = "")
         {
             // TODO add a line to the chat when a player logs in or out. 
             var NewPlayerId = Context.ConnectionId;
-            GameEngine.AddPlayer(NewPlayerId, Name);
+            GameEngine.AddPlayer(NewPlayerId, name, color);
             Clients.Caller.SetupGame(_game);
-            Clients.Others.PostServerMessage(Name + " has joined the game.");
+            Clients.Others.PostServerMessage(name + " has joined the game.");
             Clients.Caller.PostServerMessage("Welcome to BrainEaters! You can chat with online users and play tag! Use WSAD or the arrow keys to control the game.");
         }
+
 
         public override Task OnDisconnected(bool stopCalled)
         {
             var plr = Services.GetPlayerById(_game, Context.ConnectionId);
+            
+            Clients.All.PostServerMessage(plr.Name + " has left the game.");
+            
             // For example: in a chat application, mark the user as offline, 
             // delete the association between the current connection id and user name.
             GameEngine.RemovePlayer(plr);
             Clients.All.UpdateGame(_game);
 
-            Clients.All.PostServerMessage(plr.Name + " has left the game.");
-
+            
             return base.OnDisconnected(stopCalled);
         }
 

@@ -3,11 +3,7 @@ var frm = document.getElementById('chat-form');
 var messageInput = document.getElementById('input');
 var messageListDiv = document.getElementById('chat-messages');
 var messageList = document.getElementById('chat-message-list');
-var chatWindow = document.getElementById('chat-content');
 
-
-// make sure windows scrolls to last message
-messageList.scrollTop = messageList.scrollHeight;
 
 // reference hub
 var chat = $.connection.brainEatersHub;
@@ -24,13 +20,13 @@ $.connection.hub.start().done(function () {
 
 // when server calls us, show messages from other users
 chat.client.postMessage = function (player, message) {
-    messageList.innerHTML+= '<li>' + 
+    messageList.innerHTML+= '<li>' +
         '<span class="from" style="color:' + player.Color + '">' + player.Name + ": </span>" +
         message + '</li>';
 
 
     // make sure windows scrolls to last message
-    messageList.scrollTop = messageList.scrollHeight;
+    messageListDiv.scrollTop = messageListDiv.scrollHeight;
 };
 
 // comments

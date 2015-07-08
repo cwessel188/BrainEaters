@@ -2,6 +2,7 @@
  - add a powerup to slow down the player for a specified amount of time.
  
 create a partial for player logins prompting name and color
+- prompt player name and color
 
 
  create a scrolling chat div
@@ -80,6 +81,9 @@ from emily:
 
 DONE ======================================================================
 
+- get rid of html5 popup and prompt username inside a form
+- use jquery to hide and show the canvas after user is logged on
+
 - make chat scroll better
 - dock the chat form at the bottom
 - added player color and coors to the object
@@ -95,18 +99,17 @@ DONE ======================================================================
 	the player and zomies will both call this
 BUGS ======================================================================
 
-
-- single player controls don't work on firefox because event is a keyword in Chrome
-
-assigning plrchar based on the length of the player array is a bad idea.
-
-online, pushing down right silumtaneously occasionally results in a second icon appearing.
-
-occasionally players from differenct connections will control the same icon  .
+upon removing prompt, this fails.
+            Clients.All.PostServerMessage(plr.Name + " has left the game.");
 
 FIXED =====================================================================
 
-- changed event.keycode to e.keycode
+
+
+- online, pushing down right silumtaneously occasionally results in a second icon appearing.
+
+- single player controls don't work on firefox because event is a keyword in Chrome
+	-> changed event.keycode to e.keycode, event is a reserved word in Chrome
 
 - added 'tabindex="1"', which allow the canvas to be in focus and captures the listener
 	so that chat messages no longer mode the players

@@ -40,14 +40,13 @@ textarea {
 .row {
     width: 100%;
 }
-
 #game-content {
     padding: 20px 50px 50px 50px;
 }  
 
-#game-canvas {
+canvas {
+    display: none;
     border-style: solid;
-    visibility: hidden;
 }
 
 #chat-content {

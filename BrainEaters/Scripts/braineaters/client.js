@@ -33,7 +33,7 @@
     $("#login-frm").submit(function () {
         playerName = this.name.value;
         playerColor = this.color.value;
-        debugger;
+        
 
     });
 

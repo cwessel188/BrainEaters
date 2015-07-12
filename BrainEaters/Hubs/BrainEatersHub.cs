@@ -67,7 +67,7 @@ namespace BrainEaters.Hubs
         {
             var plr = Services.GetPlayerById(_game, Context.ConnectionId);
             
-            Clients.All.PostServerMessage(plr.Name + " has left the game.");
+            Clients.Others.PostServerMessage(plr.Name + " has left the game.");
             
             // For example: in a chat application, mark the user as offline, 
             // delete the association between the current connection id and user name.

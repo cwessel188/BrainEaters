@@ -12,6 +12,12 @@
     var context = canvas.getContext("2d");
     context.fillStyle = "#FFFFFF";
 
+    var BEhub = $.connection.brainEatersHub;
+
+    var CELL_WIDTH;
+    var IMG_PADDING; // pixels
+    var IMG_SIZE;    // image height and width in pixels
+
     function entity(imgSrc) { // TODO Entity
         this.img = document.createElement('img');
         this.img.src = imgSrc;
@@ -23,40 +29,38 @@
     }
 
 
-    // ******************************** SIGNALR HUB **********************************
 
-    var playerName, color;
+
+    
+    var playerName, playerColor;
     // old, crappy way of prompting a user's name
     // playerName = prompt("Enter your name:", "Steve");
 
     // new sleek way to get name
-    $("#login-frm").submit(function () {
+    $("#login-frm").submit(function (e) {
+        e.preventDefault();
         playerName = this.name.value;
         playerColor = this.color.value;
-        
 
-    });
+        // ******************************** SIGNALR HUB **********************************
 
-    // start hub
-    var BEhub = $.connection.brainEatersHub;
+        // start the connection
+        $.connection.hub.start().done(function () {
+            BEhub.server.addPlayer(playerName, playerColor);
 
-    // start the connection
-    $.connection.hub.start().done(function () {
-        BEhub.server.addPlayer(playerName, playerColor);
-
-        // this syxtax works because I set tabindex="1" on the canvas element
-        $(canvas).keydown(function (e) {
-            console.log(e.keyCode);
-            BEhub.server.keyPressed(e.keyCode);
+            // this syxtax works because I set tabindex="1" on the canvas element
+            $(canvas).keydown(function (e) {
+                console.log(e.keyCode);
+                BEhub.server.keyPressed(e.keyCode);
+            });
         });
+        
+        $("#login-frm").hide();
 
-    });
+    }); // submit
+
 
     // **************************** CLIENT PROPERTIES **********************************
-
-    var CELL_WIDTH;
-    var IMG_PADDING; // pixels
-    var IMG_SIZE;    // image height and width in pixels
 
     BEhub.client.setupGame = function (data) {
         console.log("Setup");
@@ -71,12 +75,13 @@
     };
 
     BEhub.client.updateGame = function (data) {
-        drawGame(data); 
+        drawGame(data);
     };
+    
 
-    BEhub.client.isDead = function () {
-        alert("You've been eaten!");
-    };
+    //BEhub.client.isDead = function () {
+    //    alert("You're dead!");
+    //};
 
     // ********************************* DRAW GAME ************************************
 

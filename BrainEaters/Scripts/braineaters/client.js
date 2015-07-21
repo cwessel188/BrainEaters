@@ -1,5 +1,5 @@
 ﻿/// <reference path="jquery.signalr-2.1.2.min.js" />
-(function () { 
+(function () {
 
     'use strict';
     // ******************************** SET UP ********************************
@@ -11,6 +11,11 @@
     var canvas = document.getElementById("game-canvas");
     var context = canvas.getContext("2d");
     context.fillStyle = "#FFFFFF";
+
+    var frm = document.getElementById('chat-form');
+    var messageInput = document.getElementById('input');
+    var messageListDiv = document.getElementById('chat-messages');
+    var messageList = document.getElementById('chat-message-list');
 
     var BEhub = $.connection.brainEatersHub;
 
@@ -29,9 +34,6 @@
     }
 
 
-
-
-    
     var playerName, playerColor;
     // old, crappy way of prompting a user's name
     // playerName = prompt("Enter your name:", "Steve");
@@ -53,8 +55,14 @@
                 console.log(e.keyCode);
                 BEhub.server.keyPressed(e.keyCode);
             });
+            // add listener for message form submit
+            frm.addEventListener('submit', function (e) {
+                e.preventDefault(); // prevent form from submitting
+                BEhub.server.sendMessage(messageInput.value); // send message to server
+                messageInput.value = ""; // clear input
+            });
         });
-        
+
         $("#login-frm").hide();
 
     }); // submit
@@ -77,11 +85,22 @@
     BEhub.client.updateGame = function (data) {
         drawGame(data);
     };
-    
 
-    //BEhub.client.isDead = function () {
-    //    alert("You're dead!");
-    //};
+    // when server calls us, show messages from other users
+    BEhub.client.postMessage = function (player, message) {
+        messageList.innerHTML += '<li>' +
+            '<span class="from" style="color:' + player.Color + '">' + player.Name + ": </span>" +
+            message + '</li>';
+
+
+        // make sure windows scrolls to last message
+        messageListDiv.scrollTop = messageListDiv.scrollHeight;
+    };
+
+
+    BEhub.client.postServerMessage = function (message) {
+        messageList.innerHTML += '<li>' + message + '</li>';
+    };
 
     // ********************************* DRAW GAME ************************************
 

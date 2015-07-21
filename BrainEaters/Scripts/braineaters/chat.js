@@ -30,6 +30,3 @@ chat.client.postMessage = function (player, message) {
 };
 
 // comments
-chat.client.postServerMessage = function (message) {
-    messageList.innerHTML += '<li>' + message + '</li>';
-};
